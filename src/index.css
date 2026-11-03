@@ -1,0 +1,1341 @@
+/* ============================================================
+   SkillX — Standalone Frontend Design
+   Design language: Educore reference (user-supplied screenshots)
+   - Purple top banner, clean centred nav, pill buttons
+   - Huge centred headlines, teal eyebrow pills
+   - Light-grey cards, 24-32px radius, coloured 3D-style shapes
+   - Black mega-panels for curriculum / CTA sections
+   SkillX brand kept: lime #B6F34A, real logo, Inter / Inter Tight
+   Dark mode: soft charcoal (eye-comfortable), via [data-theme="dark"]
+   ============================================================ */
+:root{
+  --bg:#ffffff; --bg-soft:#f7f7f5; --card:#f4f4f2; --card-2:#eeeeec;
+  --ink:#0c0c0d; --ink-2:#55565a; --ink-3:#8a8b90;
+  --line:#e8e8e5;
+  --purple:#7c4dff; --purple-dark:#6a3df0;
+  --teal:#5eead4; --teal-ink:#0b3f39;
+  --lime:#b6f34a; --lime-ink:#1d2b05;
+  --black-panel:#0b0b0c; --black-card:#17181a;
+  --green:#79d84f; --blue:#3b5bff; --yellow:#ffd84d; --coral:#ff6a57; --pink:#f471b5;
+  --radius:24px; --radius-lg:32px;
+  --shadow:0 20px 50px rgba(12,12,13,.10);
+  --shadow-sm:0 8px 24px rgba(12,12,13,.08);
+  --font:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --font-display:'Inter Tight','Inter',system-ui,sans-serif;
+}
+[data-theme="dark"]{
+  --bg:#0b0c0f; --bg-soft:#101116; --card:#15161c; --card-2:#1b1c24;
+  --ink:#f4f4f2; --ink-2:#b9bac2; --ink-3:#83848e;
+  --line:#23242e;
+  --black-panel:#050506; --black-card:#121216;
+  --shadow:0 20px 50px rgba(0,0,0,.45); --shadow-sm:0 8px 24px rgba(0,0,0,.35);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--font);background:var(--bg);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+.wrap{width:min(1180px,92%);margin:0 auto}
+.wrap-wide{width:min(1240px,94%);margin:0 auto}
+
+/* ---------- Top banner (Educore: purple strip) ---------- */
+.topbar{background:var(--purple);color:#fff;text-align:center;font-size:.85rem;font-weight:600;padding:.55rem 1rem;letter-spacing:.01em}
+.topbar a{text-decoration:underline;text-underline-offset:3px}
+
+/* ---------- Header / Nav ---------- */
+.site-header{position:sticky;top:0;z-index:60;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.85rem 0}
+.brand{display:flex;align-items:center;gap:.6rem;font-family:var(--font-display);font-weight:800;font-size:1.3rem;letter-spacing:-.03em}
+.brand img{width:auto;height:40px;border-radius:11px;object-fit:contain;background:#0b0b0c;padding:5px 10px}
+.nav-links{display:flex;gap:2rem;font-size:.95rem;font-weight:600}
+.nav-links a{color:var(--ink-2);transition:color .2s}
+.nav-links a:hover,.nav-links a.active{color:var(--ink)}
+.nav-actions{display:flex;align-items:center;gap:.6rem}
+.theme-toggle{width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:var(--card);cursor:pointer;font-size:1rem;display:grid;place-items:center}
+.burger{display:none;width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:var(--card);cursor:pointer;font-size:1.1rem}
+.mobile-menu{display:none;border-top:1px solid var(--line);padding:1rem 4%;flex-direction:column;gap:.9rem;font-weight:600}
+.mobile-menu.open{display:flex}
+
+/* ---------- Buttons ---------- */
+.btn{display:inline-flex;align-items:center;gap:.5rem;border-radius:999px;padding:.85rem 1.7rem;font-weight:700;font-size:.95rem;border:1px solid transparent;cursor:pointer;transition:transform .18s,box-shadow .18s,background .18s;white-space:nowrap}
+.btn:hover{transform:translateY(-2px)}
+.btn-dark{background:var(--ink);color:var(--bg)}
+.btn-lime{background:var(--lime);color:var(--lime-ink)}
+.btn-grey{background:var(--card-2);color:var(--ink)}
+.btn-purple{background:var(--purple);color:#fff}
+.btn-white{background:#fff;color:#0c0c0d}
+.btn-outline{border-color:var(--line);background:transparent;color:var(--ink)}
+.btn-sm{padding:.6rem 1.25rem;font-size:.88rem}
+
+/* ---------- Eyebrow pill + headings (Educore signature) ---------- */
+.pill{display:inline-flex;align-items:center;gap:.4rem;background:var(--teal);color:var(--teal-ink);font-size:.82rem;font-weight:700;padding:.42rem 1rem;border-radius:999px}
+.pill-grey{background:var(--card-2);color:var(--ink-2)}
+.pill-dark{background:#26272b;color:#fff}
+.pill-lime{background:var(--lime);color:var(--lime-ink)}
+.section{padding:6.5rem 0}
+.section-soft{background:var(--bg-soft)}
+.section-head{text-align:center;max-width:760px;margin:0 auto 3.5rem}
+.section-head h2,.hero h1,.page-hero h1{font-family:var(--font-display);font-weight:800;letter-spacing:-.035em;line-height:1.04}
+.section-head h2{font-size:clamp(2.2rem,5vw,3.6rem);margin:1.1rem 0 .9rem}
+.section-head p{color:var(--ink-2);font-size:1.08rem}
+.kicker-icon{width:52px;height:52px;margin:0 auto;border-radius:16px;background:var(--ink);color:var(--bg);display:grid;place-items:center;font-size:1.25rem;box-shadow:var(--shadow-sm)}
+
+/* ---------- Hero ---------- */
+.hero{text-align:center;padding:4.5rem 0 5rem}
+.hero h1{font-size:clamp(2.7rem,6.5vw,4.9rem);margin:1.4rem auto 1.2rem;max-width:900px}
+.hero h1 .hl{background:linear-gradient(transparent 62%,var(--lime) 62%)}
+.hero .sub{color:var(--ink-2);font-size:1.15rem;max-width:680px;margin:0 auto 2rem}
+.hero-ctas{display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap}
+.chips{display:flex;gap:.5rem;justify-content:center;flex-wrap:wrap;margin-top:2.2rem}
+.chip{border:1px solid var(--line);background:var(--bg);border-radius:999px;padding:.45rem 1rem;font-size:.86rem;font-weight:600;color:var(--ink-2)}
+.showcase{margin:3.5rem auto 0;max-width:1020px;border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow);position:relative;background:linear-gradient(140deg,#101013,#232329 60%,#2e2140)}
+.showcase img{width:100%;height:440px;object-fit:contain;object-position:center top}
+.showcase-bar{position:absolute;left:1.2rem;right:1.2rem;bottom:1.2rem;background:rgba(10,10,12,.72);backdrop-filter:blur(10px);color:#fff;border-radius:20px;padding:1rem 1.4rem;display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;text-align:left}
+.showcase-bar strong{font-family:var(--font-display);letter-spacing:-.02em}
+.showcase-bar span{color:#cfd0d6;font-size:.88rem}
+.countdown{display:flex;gap:1.4rem;align-items:center}
+.countdown b{font-size:1.5rem;font-family:var(--font-display)}
+.countdown small{display:block;color:#cfd0d6;font-size:.68rem;text-transform:uppercase;letter-spacing:.08em}
+
+/* ---------- Stat cards (Educore: 4 light cards) ---------- */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
+.stat{background:var(--card);border-radius:var(--radius);padding:2.2rem 1.4rem;text-align:center}
+.stat .ic{width:46px;height:46px;margin:0 auto 1rem;border-radius:14px;display:grid;place-items:center;font-size:1.15rem;background:#fff;box-shadow:var(--shadow-sm)}
+[data-theme="dark"] .stat .ic{background:#22232c}
+.stat .ic.teal{background:var(--teal)} .stat .ic.pink{background:#f9a8d4} .stat .ic.lime{background:var(--lime)} .stat .ic.grey{background:var(--card-2)}
+.stat b{font-family:var(--font-display);font-size:2.4rem;letter-spacing:-.04em;display:block;line-height:1.1}
+.stat span{color:var(--ink-2);font-size:.92rem}
+
+/* ---------- Generic cards / grids ---------- */
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
+.grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:1.2rem}
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem}
+.card{background:var(--card);border-radius:var(--radius);padding:2rem}
+.card h3{font-family:var(--font-display);letter-spacing:-.02em;font-size:1.35rem;margin-bottom:.55rem}
+.card p{color:var(--ink-2);font-size:.98rem}
+.card .num{display:inline-grid;place-items:center;width:40px;height:40px;border-radius:12px;background:#fff;font-weight:800;font-size:.85rem;margin-bottom:1.1rem;box-shadow:var(--shadow-sm)}
+[data-theme="dark"] .card .num{background:#22232c}
+
+/* ---------- How it works: fanned tilted cards (Educore signature) ---------- */
+.fan{display:grid;grid-template-columns:repeat(4,1fr);gap:1.1rem;align-items:start}
+.fan-card{background:var(--card);border-radius:var(--radius);padding:2rem 1.5rem 0;text-align:center;overflow:hidden;box-shadow:var(--shadow-sm);transition:transform .3s}
+.fan-card:nth-child(1){transform:rotate(-3deg)} .fan-card:nth-child(2){transform:rotate(-1deg) translateY(14px)}
+.fan-card:nth-child(3){transform:rotate(1.5deg) translateY(6px)} .fan-card:nth-child(4){transform:rotate(3.5deg) translateY(22px)}
+.fan-card:hover{transform:rotate(0) translateY(0)}
+.fan-card .num{display:inline-grid;place-items:center;width:38px;height:38px;border-radius:11px;background:#fff;font-weight:800;font-size:.82rem;box-shadow:var(--shadow-sm)}
+[data-theme="dark"] .fan-card .num{background:#22232c}
+.fan-card h3{font-family:var(--font-display);font-size:1.55rem;letter-spacing:-.025em;margin:.9rem 0 .4rem}
+.fan-card p{color:var(--ink-2);font-size:.93rem;min-height:3.2em}
+.shape{height:120px;margin:1.4rem -1.5rem 0;border-radius:50% 50% 0 0/70% 70% 0 0;position:relative}
+.shape::after{content:"";position:absolute;inset:22% 18% -30%;border-radius:inherit;background:inherit;filter:brightness(1.07)}
+.shape.green{background:radial-gradient(circle at 35% 30%,#a5ec84,var(--green))} .shape.blue{background:radial-gradient(circle at 35% 30%,#7d94ff,var(--blue))}
+.shape.yellow{background:radial-gradient(circle at 35% 30%,#ffe98a,var(--yellow))} .shape.coral{background:radial-gradient(circle at 35% 30%,#ffa294,var(--coral))}
+
+/* ---------- Black mega panel (Educore curriculum / CTA) ---------- */
+.mega{background:var(--black-panel);color:#f5f5f3;border-radius:var(--radius-lg);padding:4.5rem clamp(1.4rem,5vw,4rem);box-shadow:var(--shadow)}
+.mega .section-head h2{color:#fff}
+.mega .section-head p{color:#a7a8ae}
+.mega-grid{display:grid;grid-template-columns:1.55fr 1fr;gap:1.2rem;align-items:start}
+.mega-side{background:#f4f4f2;color:#0c0c0d;border-radius:var(--radius);padding:2.2rem}
+.mega-side small{font-weight:700;color:#6b6c72;text-transform:uppercase;letter-spacing:.07em;font-size:.72rem}
+.mega-side h3{font-family:var(--font-display);font-size:1.9rem;letter-spacing:-.03em;line-height:1.12;margin:.7rem 0 .8rem}
+.mega-side p{color:#55565a;font-size:.97rem}
+.mega-side ul{list-style:none;margin-top:1.2rem;display:grid;gap:.6rem;font-weight:600;font-size:.95rem}
+.mega-side li::before{content:"✓";margin-right:.55rem;background:var(--lime);border-radius:50%;width:22px;height:22px;display:inline-grid;place-items:center;font-size:.72rem;vertical-align:middle}
+
+/* ---------- Accordion ---------- */
+.acc{display:grid;gap:.7rem}
+.acc-item{background:var(--black-card);border:1px solid #232326;border-radius:18px;overflow:hidden}
+.acc-item.light{background:var(--card);border-color:var(--line)}
+.acc-btn{width:100%;display:flex;justify-content:space-between;align-items:center;gap:1rem;background:none;border:0;color:inherit;font:inherit;font-weight:700;font-size:1.05rem;text-align:left;padding:1.25rem 1.4rem;cursor:pointer}
+.acc-btn .meta{display:block;font-weight:500;font-size:.85rem;color:#9a9ba2;margin-top:.25rem}
+.acc-item.light .acc-btn .meta{color:var(--ink-2)}
+.acc-toggle{flex:none;width:34px;height:34px;border-radius:10px;background:#26272b;color:#fff;display:grid;place-items:center;font-size:1.05rem}
+.acc-item.light .acc-toggle{background:var(--ink);color:var(--bg)}
+.acc-body{display:none;padding:0 1.4rem 1.4rem;color:#b9bac0;font-size:.96rem}
+.acc-item.light .acc-body{color:var(--ink-2)}
+.acc-item.open .acc-body{display:block}
+.acc-body ul{list-style:none;display:grid;gap:.55rem}
+.acc-body li{display:flex;justify-content:flex-start;align-items:center;gap:.6rem;border-top:1px solid #232326;padding-top:.55rem}
+.acc-body li span:last-child{margin-left:auto;color:#9a9ba2;font-size:.88rem;flex:none}
+.acc-item.light .acc-body li{border-color:var(--line)}
+.acc-body li::before{content:"✓";color:var(--teal);flex:none}
+
+/* ---------- Course cards ---------- */
+.filters{display:flex;gap:.55rem;justify-content:center;flex-wrap:wrap;margin-bottom:2.6rem}
+.filter-btn{border:1px solid var(--line);background:var(--bg);color:var(--ink-2);border-radius:999px;padding:.55rem 1.2rem;font:inherit;font-size:.9rem;font-weight:700;cursor:pointer}
+.filter-btn.active{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.course-card{background:var(--card);border-radius:var(--radius);padding:2rem;display:flex;flex-direction:column;gap:.7rem;transition:transform .25s,box-shadow .25s}
+.course-card:hover{transform:translateY(-5px);box-shadow:var(--shadow)}
+.course-card .tags{display:flex;gap:.45rem;flex-wrap:wrap}
+.tag{font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;padding:.32rem .7rem;border-radius:999px;background:#fff;color:#55565a}
+[data-theme="dark"] .tag{background:#22232c;color:#b9bac2}
+.tag.live{background:var(--lime);color:var(--lime-ink)} .tag.soon{background:#e7dcff;color:#4c2fb3}
+.course-card h3{font-family:var(--font-display);font-size:1.5rem;letter-spacing:-.025em;line-height:1.15}
+.course-card p{color:var(--ink-2);font-size:.96rem;flex:1}
+.course-card .faculty{font-size:.86rem;color:var(--ink-3);font-weight:600}
+.course-card .card-shape{height:74px;border-radius:16px;margin-bottom:.4rem}
+.featured-course{display:grid;grid-template-columns:1.15fr 1fr;gap:0;border-radius:var(--radius-lg);overflow:hidden;background:var(--black-panel);color:#fff;margin-bottom:1.4rem}
+.featured-course .fc-body{padding:3rem}
+.featured-course .fc-body h3{font-family:var(--font-display);font-size:2.3rem;letter-spacing:-.03em;line-height:1.08;margin:.8rem 0}
+.featured-course .fc-body p{color:#b9bac0}
+.featured-course .fc-visual{background:linear-gradient(140deg,var(--purple),#4c2fb3 55%,var(--teal));display:grid;place-items:center;padding:2.5rem;min-height:280px}
+.fact-row{display:flex;gap:1.6rem;flex-wrap:wrap;margin:1.6rem 0;font-size:.92rem}
+.fact-row b{display:block;font-family:var(--font-display);font-size:1.15rem}
+
+/* ---------- People ---------- */
+.person{background:var(--card);border-radius:var(--radius);padding:1.4rem;text-align:center}
+.person img{width:112px;height:112px;border-radius:50%;object-fit:cover;margin:0 auto 1rem}
+.person h3{font-family:var(--font-display);letter-spacing:-.02em;font-size:1.15rem}
+.person .role{color:var(--purple);font-weight:700;font-size:.85rem}
+.person p{color:var(--ink-2);font-size:.9rem;margin-top:.45rem}
+.founder-card{background:var(--card);border-radius:var(--radius-lg);padding:2.4rem;display:grid;grid-template-columns:150px 1fr;gap:1.8rem;align-items:center;text-align:left}
+.founder-card img{width:150px;height:150px;border-radius:50%;object-fit:cover;flex:none}
+.founder-card h3{font-family:var(--font-display);font-size:1.7rem;letter-spacing:-.025em}
+.founder-card .role{color:var(--purple);font-weight:700}
+.founder-card p{color:var(--ink-2);margin-top:.5rem}
+
+/* ---------- Tools ---------- */
+.tool{background:var(--card);border-radius:var(--radius);padding:1.6rem;text-align:center}
+.tool img{width:56px;height:56px;object-fit:contain;margin:0 auto .9rem;border-radius:14px}
+.tool h3{font-family:var(--font-display);font-size:1.1rem;letter-spacing:-.02em}
+.tool p{color:var(--ink-2);font-size:.88rem}
+.tool .mod{font-size:.75rem;font-weight:700;color:var(--ink-3);text-transform:uppercase;letter-spacing:.05em}
+
+/* ---------- Violet card (Educore salary card language) ---------- */
+.violet-card{background:var(--purple);color:#fff;border-radius:var(--radius-lg);padding:3rem;position:relative;overflow:hidden}
+.violet-card h3{font-family:var(--font-display);font-size:2rem;letter-spacing:-.03em;line-height:1.12;max-width:480px;position:relative;z-index:1}
+.violet-card p{color:#e3dcff;max-width:440px;margin-top:.8rem;position:relative;z-index:1}
+.violet-card::after{content:"";position:absolute;right:-70px;bottom:-90px;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#ffb3c8,#f471b5)}
+
+/* ---------- Fact bar / forms / misc ---------- */
+.fact-bar{display:grid;grid-template-columns:repeat(6,1fr);gap:1rem;margin-top:2.6rem}
+.fact{background:var(--card);border-radius:18px;padding:1.1rem;text-align:center}
+.fact small{display:block;color:var(--ink-3);font-weight:700;text-transform:uppercase;letter-spacing:.06em;font-size:.68rem}
+.fact b{font-family:var(--font-display);letter-spacing:-.02em}
+.page-hero{text-align:center;padding:4.5rem 0 3.5rem}
+.page-hero h1{font-size:clamp(2.5rem,6vw,4.2rem);margin:1.2rem auto 1rem;max-width:820px}
+.page-hero p{color:var(--ink-2);font-size:1.12rem;max-width:640px;margin:0 auto}
+.form-card{background:var(--card);border-radius:var(--radius-lg);padding:2.6rem;max-width:720px;margin:0 auto}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.field{display:grid;gap:.4rem}
+.field.full{grid-column:1/-1}
+.field label{font-weight:700;font-size:.9rem}
+.field input,.field select,.field textarea{font:inherit;padding:.85rem 1rem;border-radius:14px;border:1px solid var(--line);background:var(--bg);color:var(--ink);width:100%}
+.field .error{color:#dc2626;font-size:.82rem;display:none}
+.field.invalid input,.field.invalid select{border-color:#dc2626}
+.field.invalid .error{display:block}
+.form-success{display:none;background:#ecfcc5;border:1px solid var(--lime);color:#2c3d05;border-radius:18px;padding:1.4rem;margin-top:1.2rem}
+[data-theme="dark"] .form-success{background:#1d2b05;color:#d9f99d}
+.week-block{display:grid;grid-template-columns:110px 1fr;gap:1.4rem;background:var(--card);border-radius:var(--radius);padding:2rem;margin-bottom:1rem;align-items:start}
+.week-block .wk{font-family:var(--font-display);font-weight:800;font-size:1rem;background:var(--ink);color:var(--bg);border-radius:14px;padding:.7rem;text-align:center}
+.week-block h3{font-family:var(--font-display);letter-spacing:-.02em;font-size:1.4rem;margin-bottom:.4rem}
+.week-block p{color:var(--ink-2)}
+.rhythm{display:flex;gap:.45rem;flex-wrap:wrap;margin-top:.9rem}
+.rhythm span{background:#fff;border-radius:999px;padding:.35rem .85rem;font-size:.8rem;font-weight:700;color:#55565a}
+[data-theme="dark"] .rhythm span{background:#22232c;color:#b9bac2}
+.check-list{list-style:none;display:grid;gap:.7rem}
+.check-list li{padding-left:2rem;position:relative;color:var(--ink-2)}
+.check-list li::before{content:"✓";position:absolute;left:0;top:0;width:22px;height:22px;border-radius:50%;background:var(--lime);color:var(--lime-ink);display:grid;place-items:center;font-size:.72rem;font-weight:800}
+.cross-list li::before{content:"×";background:#fecaca;color:#7f1d1d}
+
+/* ---------- Footer / CTA ---------- */
+.cta-panel{background:var(--purple);border-radius:var(--radius-lg);padding:4.5rem 2rem;text-align:center;color:#fff}
+.cta-panel h2{font-family:var(--font-display);font-size:clamp(2.1rem,5vw,3.4rem);letter-spacing:-.035em;line-height:1.05;margin-bottom:1rem}
+.cta-panel p{color:#e3dcff;max-width:560px;margin:0 auto 2rem}
+footer{padding:4rem 0 2.5rem;border-top:1px solid var(--line);margin-top:0}
+.footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:2rem;margin-bottom:2.5rem}
+footer h4{font-family:var(--font-display);margin-bottom:.8rem}
+footer ul{list-style:none;display:grid;gap:.5rem;color:var(--ink-2);font-size:.94rem}
+footer .fine{color:var(--ink-3);font-size:.86rem;border-top:1px solid var(--line);padding-top:1.4rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:.6rem}
+.to-top{position:fixed;right:1.2rem;bottom:1.2rem;width:46px;height:46px;border-radius:50%;border:0;background:var(--ink);color:var(--bg);cursor:pointer;box-shadow:var(--shadow);opacity:0;pointer-events:none;transition:opacity .25s;z-index:50}
+.to-top.show{opacity:1;pointer-events:auto}
+
+/* ---------- Reveal animation (only when JS is on: head script adds .js) ---------- */
+.js .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}
+.js .reveal.in{opacity:1;transform:none}
+
+/* ---------- Responsive ---------- */
+@media(max-width:1024px){
+  .stats,.grid-4{grid-template-columns:repeat(2,1fr)}
+  .fan{grid-template-columns:repeat(2,1fr)}
+  .fan-card:nth-child(n){transform:none}
+  .mega-grid,.featured-course{grid-template-columns:1fr}
+  .fact-bar{grid-template-columns:repeat(3,1fr)}
+}
+@media(max-width:768px){
+  .nav-links{display:none}.burger{display:grid}
+  .grid-3,.grid-2{grid-template-columns:1fr}
+  .section{padding:4rem 0}
+  .showcase img{height:300px}
+  .showcase-bar{position:static;border-radius:0}
+  .founder-card{grid-template-columns:1fr;text-align:center}
+  .founder-card img{margin:0 auto}
+  .footer-grid{grid-template-columns:1fr 1fr}
+  .form-grid{grid-template-columns:1fr}
+  .week-block{grid-template-columns:1fr}
+}
+@media(max-width:520px){
+  .stats,.grid-4,.fan{grid-template-columns:1fr}
+  .fact-bar{grid-template-columns:repeat(2,1fr)}
+  .countdown{gap:.9rem}
+}
+
+/* ============================================================
+   V2 — LEFT SIDEBAR DASHBOARD LAYOUT
+   All 11 main pages live in the left sidebar (original zip nav).
+   Dark / light theme toggle lives in the sidebar.
+   ============================================================ */
+:root{--sb:276px}
+body{background:var(--bg)}
+.sidebar{position:fixed;left:0;top:0;bottom:0;width:var(--sb);background:var(--bg);border-right:1px solid var(--line);display:flex;flex-direction:column;gap:.4rem;padding:1.3rem 1.05rem 1.1rem;z-index:90;overflow-y:auto}
+.side-brand{display:flex;align-items:center;gap:.6rem;padding:.2rem .4rem 1rem;border-bottom:1px solid var(--line);margin-bottom:.9rem}
+.side-brand img{height:38px;width:auto;background:#0b0b0c;border-radius:10px;padding:4px 8px}
+.side-brand small{display:block;color:var(--ink-3);font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;line-height:1.3}
+.side-label{font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.09em;color:var(--ink-3);padding:.75rem .85rem .35rem}
+.side-nav{display:flex;flex-direction:column;gap:.22rem}
+.side-nav a{display:flex;align-items:center;gap:.72rem;padding:.6rem .85rem;border-radius:13px;font-weight:600;font-size:.95rem;color:var(--ink-2);transition:background .18s,color .18s}
+.side-nav a .ic{width:26px;text-align:center;flex:none}
+.side-nav a:hover{background:var(--card);color:var(--ink)}
+.side-nav a.active{background:var(--ink);color:var(--bg)}
+.side-enroll{margin-top:.55rem;background:var(--lime);color:var(--lime-ink)!important;justify-content:center;font-weight:800}
+.side-enroll:hover{background:var(--lime);filter:brightness(1.05)}
+.side-spacer{flex:1}
+.side-live{background:var(--card);border-radius:16px;padding:.95rem 1rem;font-size:.83rem;color:var(--ink-2);margin-bottom:.8rem}
+.side-live b{color:var(--ink);font-family:var(--font-display)}
+.theme-row{display:flex;align-items:center;justify-content:space-between;gap:.6rem;background:var(--card);border-radius:16px;padding:.8rem 1rem;font-weight:700;font-size:.9rem}
+.switch{width:52px;height:29px;border-radius:999px;border:0;background:var(--card-2);position:relative;cursor:pointer;flex:none;transition:background .2s}
+.switch::after{content:"☀️";position:absolute;top:2.5px;left:3px;width:24px;height:24px;border-radius:50%;background:#fff;display:grid;place-items:center;font-size:.72rem;transition:left .2s;box-shadow:var(--shadow-sm)}
+[data-theme="dark"] .switch{background:var(--purple)}
+[data-theme="dark"] .switch::after{content:"🌙";left:25px;background:#17181a}
+.main{margin-left:var(--sb);min-height:100vh;display:flex;flex-direction:column}
+.main .wrap{width:min(1060px,93%)}
+.mobile-header{display:none}
+.scrim{display:none}
+.main-foot{margin-top:auto}
+@media(max-width:1024px){ :root{--sb:248px} }
+@media(max-width:900px){
+  .sidebar{transform:translateX(-105%);transition:transform .3s ease;box-shadow:none;width:284px}
+  .sidebar.open{transform:none;box-shadow:var(--shadow)}
+  .scrim{display:block;position:fixed;inset:0;background:rgba(5,5,8,.45);z-index:85;opacity:0;pointer-events:none;transition:opacity .3s}
+  .scrim.show{opacity:1;pointer-events:auto}
+  .main{margin-left:0}
+  .mobile-header{display:flex;align-items:center;justify-content:space-between;gap:.7rem;position:sticky;top:0;z-index:70;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);padding:.6rem 4%}
+  .mobile-header .brand img{height:34px}
+}
+/* person card reuse for team roster */
+.person .dept{font-size:.78rem;font-weight:700;color:var(--ink-3);text-transform:uppercase;letter-spacing:.05em}
+.feed-composer textarea{width:100%;font:inherit;padding:1rem;border-radius:16px;border:1px solid var(--line);background:var(--bg);color:var(--ink);resize:vertical}
+.demo-note{font-size:.85rem;color:var(--ink-3)}
+.theme-row span{white-space:nowrap}
+/* v2 fix: keep the violet card's decorative circle clear of the heading */
+.violet-card::after{width:210px;height:210px;right:-55px;bottom:-105px;opacity:.85}
+.violet-card h3{max-width:400px}
+
+/* ============================================================
+   V3 — REAL SVG ICONS (monochrome, theme-aware) + TEAM HIERARCHY
+   No emoji icons anywhere: every icon is an inline SVG using
+   currentColor — black on light theme, white on dark theme.
+   ============================================================ */
+.side-nav a .ic{display:grid;place-items:center;width:26px}
+.side-nav a .ic svg{width:20px;height:20px}
+svg{flex:none}
+.stat .ic svg{width:22px;height:22px;color:var(--ink)}
+.stat .ic.teal,.stat .ic.pink,.stat .ic.lime{background:#fff}
+[data-theme="dark"] .stat .ic.teal,[data-theme="dark"] .stat .ic.pink,[data-theme="dark"] .stat .ic.lime{background:#22232c}
+.kicker-icon svg{width:24px;height:24px;color:var(--bg)}
+.theme-label{display:flex;align-items:center;gap:.55rem;white-space:nowrap}
+.theme-label svg{width:18px;height:18px}
+.theme-toggle{color:var(--ink)}
+.theme-toggle svg{width:19px;height:19px;display:block}
+.theme-toggle .icon-sun{display:none}
+[data-theme="dark"] .theme-toggle .icon-sun{display:block}
+[data-theme="dark"] .theme-toggle .icon-moon{display:none}
+.burger{color:var(--ink)} .burger svg{width:20px;height:20px}
+.side-enroll svg{width:18px;height:18px}
+.tag svg{width:12px;height:12px;vertical-align:-2px;margin-right:.25rem}
+.tool .kicker-icon svg{color:var(--bg)}
+/* switch knob: plain circle, no emoji */
+.switch::after{content:"";background:#0c0c0d;border:2px solid #fff;box-shadow:var(--shadow-sm)}
+[data-theme="dark"] .switch::after{content:"";background:#f4f4f2;border-color:#17181a;left:25px}
+
+/* ---- Courses featured visual (no founders photo here anymore) ---- */
+.fc-graphic{text-align:center;color:#fff;max-width:340px}
+.fc-graphic .fc-play{width:92px;height:92px;margin:0 auto 1.2rem;border-radius:50%;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.35);display:grid;place-items:center;color:#fff}
+.fc-graphic .fc-play svg{width:38px;height:38px;margin-left:4px}
+.fc-graphic h4{font-family:var(--font-display);font-size:1.6rem;letter-spacing:-.02em;line-height:1.15}
+.fc-graphic p{color:#e3dcff;font-size:.92rem;margin-top:.5rem}
+.fc-graphic .chips{margin-top:1.2rem}
+.fc-graphic .chip{background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.25);color:#fff}
+
+/* ---- Team hierarchy ---- */
+.dept-section{padding:4.5rem 0}
+.dept-head{display:flex;align-items:center;gap:1.1rem;max-width:1060px;margin:0 auto 2.2rem;width:93%}
+.dept-head .dept-ic{width:54px;height:54px;flex:none;border-radius:17px;background:var(--ink);color:var(--bg);display:grid;place-items:center}
+.dept-head .dept-ic svg{width:26px;height:26px}
+.dept-head h2{font-family:var(--font-display);font-size:clamp(1.7rem,3.4vw,2.4rem);letter-spacing:-.03em;line-height:1.08}
+.dept-head p{color:var(--ink-2)}
+.dept-inner{width:min(1060px,93%);margin:0 auto}
+.leader-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.1rem;margin-bottom:1.1rem}
+.leader-card{display:grid;grid-template-columns:96px 1fr;gap:1.2rem;align-items:center;background:var(--card);border-radius:var(--radius);padding:1.5rem;text-align:left}
+.leader-card img{width:96px;height:96px;border-radius:50%;object-fit:cover}
+.leader-card h3{font-family:var(--font-display);font-size:1.35rem;letter-spacing:-.02em}
+.role-badge{display:inline-block;background:var(--lime);color:var(--lime-ink);font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;padding:.28rem .65rem;border-radius:999px;margin:.3rem 0 .45rem}
+.leader-card p{color:var(--ink-2);font-size:.92rem}
+.members-label{font-size:.75rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-3);margin:1.6rem 0 .9rem}
+.dept-dark{background:var(--black-panel);border-radius:var(--radius-lg);width:min(1140px,96%);margin:0 auto;padding:3.5rem clamp(1.2rem,4vw,3rem)}
+.dept-dark .dept-head{width:100%;margin-bottom:2rem}
+.dept-dark .dept-head .dept-ic{background:#fff;color:#0c0c0d}
+.dept-dark .dept-head h2{color:#fff}.dept-dark .dept-head p{color:#a7a8ae}
+.dept-dark .dept-inner{width:100%}
+.dept-dark .leader-card{background:var(--black-card)}
+.dept-dark .leader-card h3{color:#fff}.dept-dark .leader-card p{color:#b9bac0}
+.dept-dark .person{background:var(--black-card)}
+.dept-dark .person h3{color:#fff}.dept-dark .person .dept{color:#9a9ba2}
+.dept-dark .members-label{color:#83848e}
+.dept-violet{background:linear-gradient(150deg,#f1ebff,#e7dcff);border-radius:var(--radius-lg);width:min(1140px,96%);margin:0 auto;padding:3.5rem clamp(1.2rem,4vw,3rem)}
+[data-theme="dark"] .dept-violet{background:linear-gradient(150deg,#1d1830,#171423)}
+.dept-violet .dept-head{width:100%;margin-bottom:2rem}
+.dept-violet .dept-inner{width:100%}
+.dept-violet .leader-card,.dept-violet .person{background:rgba(255,255,255,.75)}
+[data-theme="dark"] .dept-violet .leader-card,[data-theme="dark"] .dept-violet .person{background:#1b1c24}
+.founders-showcase{margin:0 auto 2rem;max-width:1060px;width:93%}
+.founders-showcase img{width:100%;height:400px;object-fit:cover;object-position:center 22%;border-radius:var(--radius-lg);box-shadow:var(--shadow)}
+@media(max-width:768px){.founders-showcase img{height:260px}.leader-card{grid-template-columns:76px 1fr}.leader-card img{width:76px;height:76px}}
+
+
+/* ============================================================
+   SX-REACT-3D — shadcn-style redesign layer (React version)
+   Design direction (new, clean — replaces the busy v2 look):
+   - shadcn/ui tokens: neutral zinc surfaces, 1px borders,
+     rounded-xl cards, ring focus states, Inter type scale
+   - shadcn-style components: Button / Card / Badge / Tabs / Input
+     (src/components/ui/*) sharing these tokens
+   - 3D depth: perspective tilt on hero / featured / CTA panels,
+     layered shadows, floating gradient orbs, glare highlights,
+     cards lift + tilt on hover, isometric fan cards
+   - SkillX brand kept: lime #B6F34A primary accent + real logo
+   ALL page text / data comes verbatim from the original site
+   (src/data/pages.json) — only the design layer changed.
+   ============================================================ */
+:root{
+  --background:#fafafa; --foreground:#09090b;
+  --card:#ffffff; --card-foreground:#09090b;
+  --muted:#f4f4f5; --muted-foreground:#71717a;
+  --border:#e4e4e7; --input:#e4e4e7; --ring:#b6f34a;
+  --primary:#b6f34a; --primary-foreground:#1d2b05;
+  --secondary:#f4f4f5; --accent:#f4f4f5;
+  --radius:0.75rem;
+  /* map the content layer onto shadcn tokens */
+  --bg:var(--background); --bg-soft:#f4f4f5; --card-2:#ececef;
+  --ink:var(--foreground); --ink-2:#52525b; --ink-3:#a1a1aa;
+  --line:var(--border);
+  --purple:#7c4dff; --teal:#5eead4;
+  --shadow:0 24px 48px -12px rgba(9,9,11,.18),0 4px 12px rgba(9,9,11,.06);
+  --shadow-sm:0 10px 24px -8px rgba(9,9,11,.14),0 2px 6px rgba(9,9,11,.05);
+  --radius-lg:20px;
+}
+[data-theme="dark"]{
+  --background:#09090b; --foreground:#fafafa;
+  --card:#101012; --card-foreground:#fafafa;
+  --muted:#18181b; --muted-foreground:#a1a1aa;
+  --border:#26262b; --input:#26262b;
+  --bg:var(--background); --bg-soft:#101012; --card-2:#1a1a1e;
+  --ink:var(--foreground); --ink-2:#c6c6cc; --ink-3:#83848e;
+  --line:var(--border);
+  --black-panel:#050506; --black-card:#141416;
+  --shadow:0 24px 48px -12px rgba(0,0,0,.6),0 4px 12px rgba(0,0,0,.4);
+  --shadow-sm:0 10px 24px -8px rgba(0,0,0,.5);
+}
+body{background:var(--background)}
+.app-shell{position:relative;min-height:100vh;display:flex;flex-direction:column}
+.page-main{flex:1;width:100%}
+.main-foot{margin-top:0}
+
+/* ---------- 3D background scene ---------- */
+.bg-scene{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none;background:
+  radial-gradient(60rem 30rem at 85% -10%,color-mix(in srgb,var(--primary) 14%,transparent),transparent 60%),
+  radial-gradient(50rem 26rem at -10% 20%,rgba(124,77,255,.10),transparent 60%),
+  var(--background)}
+.orb{position:absolute;border-radius:50%;filter:blur(70px);opacity:.55;animation:orb-float 14s ease-in-out infinite}
+.orb-a{width:420px;height:420px;background:color-mix(in srgb,var(--primary) 45%,transparent);top:-140px;right:-80px}
+.orb-b{width:340px;height:340px;background:rgba(124,77,255,.35);top:32%;left:-140px;animation-delay:-5s}
+.orb-c{width:260px;height:260px;background:rgba(94,234,212,.35);bottom:-100px;right:22%;animation-delay:-9s}
+@keyframes orb-float{0%,100%{transform:translate3d(0,0,0) scale(1)}50%{transform:translate3d(0,26px,0) scale(1.06)}}
+.grid-floor{position:absolute;left:-20%;right:-20%;bottom:-32%;height:55%;
+  background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);
+  background-size:56px 56px;opacity:.35;
+  transform:perspective(700px) rotateX(62deg);transform-origin:bottom;
+  -webkit-mask-image:linear-gradient(to top,black 30%,transparent 90%);mask-image:linear-gradient(to top,black 30%,transparent 90%)}
+
+/* ---------- Top banner + glass header (shadcn chrome) ---------- */
+.topbar{background:linear-gradient(90deg,#18181b,#27272a);color:#fafafa;box-shadow:0 10px 24px -12px rgba(0,0,0,.5);position:relative;z-index:70}
+[data-theme="dark"] .topbar{background:linear-gradient(90deg,#b6f34a,#8ee02e);color:#1d2b05}
+.glass-header{position:sticky;top:0;z-index:65;background:color-mix(in srgb,var(--background) 82%,transparent);
+  backdrop-filter:blur(16px) saturate(1.4);border-bottom:1px solid var(--border);
+  box-shadow:0 12px 32px -18px rgba(9,9,11,.25)}
+.header-row{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.8rem 0 .55rem}
+.glass-header .brand{display:flex;align-items:center;gap:.65rem;font-family:var(--font-display)}
+.glass-header .brand img{height:42px;width:auto;background:#0b0b0c;border-radius:12px;padding:5px 10px;
+  box-shadow:0 10px 20px -8px rgba(0,0,0,.55),inset 0 1px 0 rgba(255,255,255,.25);transform:perspective(500px) rotateY(-8deg)}
+.glass-header .brand span{display:flex;flex-direction:column;line-height:1.05}
+.glass-header .brand strong{font-size:1.35rem;font-weight:800;letter-spacing:-.03em}
+.glass-header .brand small{font-size:.72rem;color:var(--ink-3);font-weight:600;letter-spacing:.14em;text-transform:uppercase}
+.header-actions{display:flex;align-items:center;gap:.6rem}
+.live-badge{display:inline-flex;align-items:center;gap:.45rem}
+.live-dot{width:8px;height:8px;border-radius:50%;background:#3f6212;animation:pulse-dot 1.6s ease-in-out infinite}
+@keyframes pulse-dot{0%,100%{box-shadow:0 0 0 0 rgba(182,243,74,.7)}50%{box-shadow:0 0 0 6px rgba(182,243,74,0)}}
+.theme-btn{font-size:1.05rem;line-height:1}
+@media(max-width:640px){.live-badge{display:none}}
+
+/* ---------- shadcn-style components ---------- */
+.btn-shadcn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;white-space:nowrap;
+  border-radius:var(--radius);font-size:.92rem;font-weight:600;line-height:1;height:2.65rem;padding:0 1.15rem;
+  border:1px solid transparent;cursor:pointer;transition:all .18s ease;text-decoration:none;
+  box-shadow:0 1px 2px rgba(9,9,11,.08)}
+.btn-shadcn:focus-visible{outline:none;box-shadow:0 0 0 3px color-mix(in srgb,var(--ring) 55%,transparent)}
+.btn-default{background:var(--foreground);color:var(--background)}
+.btn-default:hover{transform:translateY(-1px);box-shadow:0 12px 22px -10px rgba(9,9,11,.45)}
+.btn-lime,.btn-primary-lime{background:var(--primary);color:var(--primary-foreground)}
+.btn-outline{background:var(--card);border-color:var(--border);color:var(--foreground)}
+.btn-outline:hover{background:var(--muted)}
+.btn-secondary{background:var(--secondary);color:var(--foreground)}
+.btn-ghost{background:transparent;box-shadow:none;color:var(--foreground)}
+.btn-ghost:hover{background:var(--muted)}
+.btn-size-sm{height:2.15rem;padding:0 .8rem;font-size:.85rem;border-radius:.55rem}
+.btn-size-lg{height:3rem;padding:0 1.5rem;font-size:1rem}
+.btn-size-icon{width:2.65rem;padding:0}
+.enroll-btn{background:var(--primary);color:var(--primary-foreground)}
+.enroll-btn:hover{background:var(--primary)}
+.badge-shadcn{display:inline-flex;align-items:center;border-radius:999px;border:1px solid transparent;
+  padding:.28rem .7rem;font-size:.78rem;font-weight:600;line-height:1.2}
+.badge-default{background:var(--foreground);color:var(--background)}
+.badge-secondary{background:var(--secondary);color:var(--foreground)}
+.badge-outline{background:transparent;border-color:var(--border);color:var(--foreground)}
+.badge-lime{background:var(--primary);color:var(--primary-foreground);box-shadow:0 8px 18px -8px rgba(140,190,30,.8)}
+.card-shadcn{background:var(--card);color:var(--card-foreground);border:1px solid var(--border);
+  border-radius:var(--radius-lg);box-shadow:var(--shadow-sm)}
+.card-shadcn-header{padding:1.4rem 1.4rem 0}
+.card-shadcn-title{font-family:var(--font-display);font-size:1.25rem;font-weight:700;letter-spacing:-.02em}
+.card-shadcn-desc{color:var(--muted-foreground);font-size:.92rem;margin-top:.3rem}
+.card-shadcn-content{padding:1.1rem 1.4rem}
+.card-shadcn-footer{padding:0 1.4rem 1.4rem;display:flex;gap:.6rem}
+.input-shadcn{display:flex;height:2.65rem;width:100%;border-radius:var(--radius);border:1px solid var(--input);
+  background:var(--card);padding:0 .85rem;font-size:.95rem;color:var(--foreground)}
+.input-shadcn:focus-visible{outline:none;box-shadow:0 0 0 3px color-mix(in srgb,var(--ring) 55%,transparent)}
+
+/* ---------- shadcn-style Tabs = page navigation ---------- */
+.page-tabs{padding:0 0 .7rem}
+.tabs-list{display:flex;gap:.3rem;overflow-x:auto;padding:.32rem;border:1px solid var(--border);
+  background:var(--muted);border-radius:14px;scrollbar-width:none;box-shadow:inset 0 2px 6px rgba(9,9,11,.06)}
+.tabs-list::-webkit-scrollbar{display:none}
+.tabs-trigger{flex:none;display:inline-flex;align-items:center;padding:.5rem .85rem;border-radius:10px;
+  font-size:.88rem;font-weight:600;color:var(--muted-foreground);transition:all .18s ease;white-space:nowrap}
+.tabs-trigger:hover{color:var(--foreground)}
+.tabs-trigger-active{background:var(--card);color:var(--foreground);
+  box-shadow:0 8px 18px -8px rgba(9,9,11,.35),0 1px 3px rgba(9,9,11,.12);transform:translateY(-1px)}
+.tabs-sep{flex:none;width:1px;background:var(--border);margin:.3rem .25rem}
+
+/* ---------- Content layer: clean shadcn surfaces + 3D depth ---------- */
+.page-main .wrap{width:min(1120px,92%);margin:0 auto}
+.page-main .wrap-wide{width:min(1200px,94%);margin:0 auto}
+.hero{padding-top:4.2rem}
+.hero h1,.page-hero h1{letter-spacing:-.045em;text-wrap:balance}
+.pill{border:1px solid var(--border);background:var(--card);color:var(--foreground);
+  box-shadow:0 6px 16px -8px rgba(9,9,11,.25);border-radius:999px}
+.pill-grey{background:var(--muted);color:var(--foreground)}
+.chip{border:1px solid var(--border);background:var(--card);box-shadow:var(--shadow-sm);
+  transition:transform .2s ease,box-shadow .2s ease}
+.chip:hover{transform:translateY(-3px) perspective(500px) rotateX(6deg);box-shadow:var(--shadow)}
+.btn{border-radius:var(--radius);box-shadow:0 1px 2px rgba(9,9,11,.1);transition:all .18s ease;border:1px solid transparent}
+.btn:hover{transform:translateY(-2px)}
+.btn-dark{background:var(--foreground);color:var(--background)}
+.btn-dark:hover{box-shadow:0 14px 26px -12px rgba(9,9,11,.5)}
+.btn-grey{background:var(--card);border-color:var(--border);color:var(--foreground)}
+.btn-lime,.btn-purple{background:var(--primary);color:var(--primary-foreground)}
+.btn-white{background:#fff;color:#09090b}
+.card,.person,.tool,.fact,.week-block{background:var(--card);border:1px solid var(--border);
+  border-radius:var(--radius-lg);box-shadow:0 2px 4px rgba(9,9,11,.05),0 14px 28px -18px rgba(9,9,11,.25);
+  transform-style:preserve-3d;transition:transform .28s cubic-bezier(.2,.7,.3,1.2),box-shadow .28s ease;position:relative}
+.card:hover,.person:hover,.tool:hover,.course-card:hover{
+  transform:perspective(900px) rotateX(3deg) translateY(-6px);
+  box-shadow:0 30px 44px -16px rgba(9,9,11,.30),0 6px 14px rgba(9,9,11,.08)}
+.card::before,.person::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+  background:linear-gradient(180deg,rgba(255,255,255,.5),transparent 32%);opacity:.5}
+[data-theme="dark"] .card::before,[data-theme="dark"] .person::before{background:linear-gradient(180deg,rgba(255,255,255,.09),transparent 32%)}
+.stat{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);box-shadow:var(--shadow-sm)}
+.showcase,.featured-course,.cta-panel,.founders-showcase{transform-style:preserve-3d;will-change:transform;
+  transition:transform .35s ease;position:relative}
+.showcase{border-radius:26px;box-shadow:0 40px 70px -24px rgba(9,9,11,.45),0 12px 24px rgba(9,9,11,.12)}
+.tilt3d::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+  background:radial-gradient(420px circle at var(--glare-x,50%) var(--glare-y,50%),rgba(255,255,255,.22),transparent 65%)}
+.fan-card{transform-style:preserve-3d;box-shadow:0 30px 46px -18px rgba(9,9,11,.35)}
+.mega{border-radius:26px;box-shadow:0 44px 80px -28px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.12);
+  transform:perspective(1400px) rotateX(1.2deg)}
+.acc{border:1px solid var(--border);border-radius:var(--radius-lg);background:var(--card);box-shadow:var(--shadow-sm);overflow:hidden}
+.acc-item{border-color:var(--border)}
+.acc-btn{color:var(--foreground)}
+.acc-body{color:var(--ink-2)}
+.filters .filter-btn{border:1px solid var(--border);background:var(--card);color:var(--ink-2);border-radius:999px;
+  box-shadow:0 2px 6px rgba(9,9,11,.06);transition:all .18s ease}
+.filters .filter-btn:hover{transform:translateY(-2px);color:var(--foreground)}
+.filters .filter-btn.active{background:var(--foreground);color:var(--background);border-color:var(--foreground)}
+.field input,.field select,.field textarea{border:1px solid var(--input);border-radius:var(--radius);
+  background:var(--card);color:var(--foreground)}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;
+  box-shadow:0 0 0 3px color-mix(in srgb,var(--ring) 55%,transparent);border-color:var(--ring)}
+.form-card{background:var(--card);border:1px solid var(--border);border-radius:26px;
+  box-shadow:0 34px 60px -24px rgba(9,9,11,.35)}
+input[type="search"]{border:1px solid var(--input);border-radius:var(--radius);background:var(--card);color:var(--foreground)}
+.reveal{opacity:0;transform:translateY(26px) perspective(800px) rotateX(4deg);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.3,1)}
+.reveal.in{opacity:1;transform:none}
+.to-top{position:fixed;right:1.2rem;bottom:1.2rem;z-index:80;width:46px;height:46px;border-radius:14px;border:1px solid var(--border);
+  background:var(--foreground);color:var(--background);font-size:1.1rem;cursor:pointer;opacity:0;pointer-events:none;
+  transform:translateY(10px);transition:all .25s ease;box-shadow:0 16px 30px -12px rgba(9,9,11,.5)}
+.to-top.show{opacity:1;pointer-events:auto;transform:none}
+.main-foot{border-top:1px solid var(--border);background:color-mix(in srgb,var(--muted) 55%,transparent);margin-top:4rem}
+.tilt{position:relative;transform-style:preserve-3d;transition:transform .3s ease}
+.tilt-glare{position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+  background:radial-gradient(420px circle at var(--glare-x,50%) var(--glare-y,50%),rgba(255,255,255,.20),transparent 65%)}
+@media(max-width:760px){
+  .hero{padding-top:2.6rem}
+  .card:hover,.person:hover,.tool:hover,.course-card:hover{transform:translateY(-4px)}
+  .mega{transform:none}
+}
+
+
+/* ---------- QC fixes (screenshot review, desktop + mobile) ---------- */
+@media(max-width:640px){
+  .header-actions .live-badge{display:none}
+  .glass-header .brand img{height:34px;padding:4px 8px}
+  .glass-header .brand small{display:none}
+  .glass-header .brand strong{font-size:1.15rem}
+  .enroll-btn{height:2.4rem;padding:0 .85rem;font-size:.88rem}
+  .hero h1,.page-hero h1{font-size:clamp(2.35rem,11.2vw,3.2rem);line-height:1.04;overflow-wrap:break-word}
+  .hero .sub{font-size:1.02rem}
+}
+@media(min-width:1024px){
+  .tabs-list{flex-wrap:wrap;overflow-x:visible;justify-content:center}
+  .tabs-trigger{padding:.5rem .72rem;font-size:.86rem}
+}
+
+
+/* ============================================================
+   SX-REACT-UPDATE-2 — user-directed changes
+   1) Navigation moved to a LEFT SIDEBAR (dashboard layout)
+   2) Founders photo removed from Home (it lives on Meet the
+      Team only) — home keeps a glass countdown strip
+   3) Hero heading typing animation (infinite)
+   4) "Ready to start learning, free?" CTA = glassmorphism
+   5) Footer link hover effects
+   ============================================================ */
+
+/* ---------- 1) Left sidebar dashboard layout ---------- */
+.dash-sidebar{position:fixed;left:0;top:0;bottom:0;width:284px;z-index:90;display:flex;flex-direction:column;
+  gap:.3rem;padding:1.25rem 1rem 1.1rem;overflow-y:auto;
+  background:color-mix(in srgb,var(--card) 88%,transparent);backdrop-filter:blur(18px) saturate(1.35);
+  border-right:1px solid var(--border);box-shadow:24px 0 48px -32px rgba(9,9,11,.30)}
+.dash-sidebar .side-brand{display:flex;align-items:center;gap:.65rem;padding:.1rem .35rem 1rem;
+  border-bottom:1px solid var(--border);margin-bottom:.7rem}
+.dash-sidebar .side-brand img{height:42px;width:auto;background:#0b0b0c;border-radius:12px;padding:5px 10px;
+  box-shadow:0 10px 20px -8px rgba(0,0,0,.55),inset 0 1px 0 rgba(255,255,255,.25);transform:perspective(500px) rotateY(-8deg)}
+.dash-sidebar .side-brand span{display:flex;flex-direction:column;line-height:1.05}
+.dash-sidebar .side-brand strong{font-family:var(--font-display);font-size:1.3rem;font-weight:800;letter-spacing:-.03em;color:var(--foreground)}
+.dash-sidebar .side-brand small{font-size:.68rem;color:var(--ink-3);font-weight:600;letter-spacing:.14em;text-transform:uppercase}
+.dash-sidebar .side-label{font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.09em;color:var(--ink-3);padding:.7rem .8rem .3rem}
+.dash-sidebar .side-nav{display:flex;flex-direction:column;gap:.22rem}
+.dash-sidebar .side-nav a{display:flex;align-items:center;gap:.68rem;padding:.58rem .8rem;border-radius:11px;
+  font-weight:600;font-size:.93rem;color:var(--ink-2);border:1px solid transparent;position:relative;
+  transition:all .18s ease}
+.dash-sidebar .side-nav a .ic{display:grid;place-items:center;flex:none}
+.dash-sidebar .side-nav a .ic svg{width:19px;height:19px}
+.dash-sidebar .side-nav a:hover{background:var(--muted);color:var(--foreground);transform:translateX(3px)}
+.dash-sidebar .side-nav a.active{background:var(--card);color:var(--foreground);border-color:var(--border);
+  box-shadow:0 10px 20px -12px rgba(9,9,11,.35)}
+.dash-sidebar .side-nav a.active::before{content:"";position:absolute;left:-1rem;top:20%;bottom:20%;width:4px;
+  border-radius:0 4px 4px 0;background:var(--primary)}
+.dash-sidebar .side-enroll{background:var(--primary);color:var(--primary-foreground)!important;justify-content:center;
+  font-weight:800;margin-top:.5rem;box-shadow:0 14px 26px -12px rgba(140,190,30,.75)}
+.dash-sidebar .side-enroll:hover{background:var(--primary);transform:translateY(-1px)}
+.dash-sidebar .side-enroll .ic svg{width:19px;height:19px}
+.side-spacer{flex:1;min-height:1.2rem}
+.dash-sidebar .side-live{background:linear-gradient(150deg,#17171c,#232330 60%,#2e2140);color:#d7d7e0;
+  border:1px solid rgba(255,255,255,.10);border-radius:16px;padding:.95rem 1rem;font-size:.83rem;margin-bottom:.8rem;
+  box-shadow:0 20px 34px -18px rgba(0,0,0,.55),inset 0 1px 0 rgba(255,255,255,.12)}
+.dash-sidebar .side-live b{color:#fff}
+.dash-sidebar .theme-row{display:flex;align-items:center;justify-content:space-between;gap:.6rem;
+  background:var(--card);border:1px solid var(--border);border-radius:16px;padding:.78rem 1rem;
+  font-weight:700;font-size:.9rem;color:var(--foreground);box-shadow:var(--shadow-sm)}
+.theme-switch{width:52px;height:29px;border-radius:999px;border:1px solid var(--border);background:var(--muted);
+  position:relative;cursor:pointer;flex:none;transition:background .2s;padding:0}
+.theme-switch .knob{position:absolute;top:2px;left:3px;width:23px;height:23px;border-radius:50%;
+  background:var(--foreground);transition:left .22s ease,background .2s}
+.theme-switch.on{background:var(--primary)}
+.theme-switch.on .knob{left:24px;background:#1d2b05}
+.dash-main{margin-left:284px;min-height:100vh;display:flex;flex-direction:column;min-width:0}
+.dash-main .page-main{flex:1}
+.scrim{position:fixed;inset:0;background:rgba(5,5,8,.45);z-index:85;opacity:0;pointer-events:none;transition:opacity .3s}
+.scrim.show{opacity:1;pointer-events:auto}
+.mobile-header{display:none}
+.mobile-actions{display:flex;gap:.5rem;align-items:center}
+.mobile-actions .burger{display:grid;place-items:center;width:42px;height:42px;border-radius:12px;
+  border:1px solid var(--border);background:var(--card);color:var(--foreground);cursor:pointer;font-size:1.05rem}
+@media(max-width:900px){
+  .dash-sidebar{transform:translateX(-106%);transition:transform .32s ease;width:288px}
+  .dash-sidebar.open{transform:none;box-shadow:var(--shadow)}
+  .dash-main{margin-left:0}
+  .mobile-header{display:flex;align-items:center;justify-content:space-between;gap:.7rem;position:sticky;top:0;
+    z-index:70;background:color-mix(in srgb,var(--background) 90%,transparent);backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--border);padding:.6rem 4%}
+  .mobile-header .brand{display:flex;align-items:center;gap:.55rem;font-family:var(--font-display);
+    font-weight:800;font-size:1.15rem;color:var(--foreground)}
+  .mobile-header .brand img{height:36px;width:auto;background:#0b0b0c;border-radius:10px;padding:4px 8px}
+}
+@media(max-width:640px){.mobile-actions .live-badge{display:none}}
+
+/* ---------- 2) Home showcase: glass countdown strip (no photo) ---------- */
+.showcase-glass{background:linear-gradient(140deg,rgba(16,16,20,.94),rgba(35,35,41,.94) 60%,rgba(46,33,64,.94));
+  padding:1.15rem;border:1px solid rgba(255,255,255,.12);overflow:visible}
+.showcase-glass .showcase-bar{position:static;background:rgba(255,255,255,.07);
+  border:1px solid rgba(255,255,255,.15);backdrop-filter:blur(14px);border-radius:16px}
+
+/* ---------- 3) Typing animation ---------- */
+.typed-line{white-space:normal}
+.typed-word{color:var(--foreground)}
+.typed-caret{display:inline-block;width:4px;height:.82em;margin-left:5px;border-radius:2px;
+  background:var(--primary);vertical-align:-.06em;animation:caret-blink 1s steps(1) infinite;
+  box-shadow:0 0 12px rgba(182,243,74,.8)}
+@keyframes caret-blink{0%,55%{opacity:1}56%,100%{opacity:0}}
+@media(prefers-reduced-motion:reduce){.typed-caret{animation:none}}
+
+/* ---------- 4) Glassmorphism CTA (home, before footer) ---------- */
+.cta-glass{background:linear-gradient(135deg,rgba(124,77,255,.66),rgba(76,29,214,.55) 55%,rgba(140,200,40,.38));
+  -webkit-backdrop-filter:blur(20px) saturate(1.5);backdrop-filter:blur(20px) saturate(1.5);
+  border:1px solid rgba(255,255,255,.45);color:#fff;position:relative;overflow:hidden;
+  box-shadow:0 44px 84px -30px rgba(90,50,220,.55),inset 0 1px 0 rgba(255,255,255,.55),inset 0 -20px 38px rgba(255,255,255,.12)}
+.cta-glass::before{content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(115deg,rgba(255,255,255,.35) 0%,transparent 42%)}
+.cta-glass p{color:#efeaff}
+.cta-glass .btn{position:relative;z-index:1}
+.cta-glass h2,.cta-glass p{position:relative;z-index:1}
+
+/* ---------- 5) Footer link hover effects ---------- */
+:root{--link-hover:#4d7c0f}
+[data-theme="dark"]{--link-hover:#b6f34a}
+.main-foot a{transition:color .2s ease,transform .2s ease}
+.main-foot a:hover{color:var(--link-hover)}
+.main-foot ul{list-style:none}
+.main-foot ul li a{display:inline-block;position:relative;padding-bottom:3px}
+.main-foot ul li a::after{content:"";position:absolute;left:0;bottom:0;height:2px;width:100%;
+  background:var(--link-hover);border-radius:2px;transform:scaleX(0);transform-origin:left;
+  transition:transform .3s cubic-bezier(.2,.7,.3,1)}
+.main-foot ul li a:hover{transform:translateX(4px)}
+.main-foot ul li a:hover::after{transform:scaleX(1)}
+.main-foot .brand:hover{transform:translateY(-2px)}
+
+
+/* ============================================================
+   SX-REACT-UPDATE-3
+   1) Get Connected CTA = 3D glassmorphism (.cta-glass-3d)
+   2) Performance / smoothness pass — SAME design, cheaper paint:
+      gradient orbs instead of giant blur filters, lighter
+      backdrop blurs, content-visibility for long pages, and a
+      "lite" mode (auto on low-end devices) that drops the most
+      expensive effects while keeping the look.
+   ============================================================ */
+
+/* ---------- 1) 3D glassmorphism CTA ---------- */
+.cta-glass-3d{transform-style:preserve-3d;
+  background:linear-gradient(135deg,rgba(124,77,255,.62),rgba(76,29,214,.52) 48%,rgba(94,234,212,.38) 88%,rgba(140,200,40,.34));
+  box-shadow:0 54px 96px -34px rgba(76,29,214,.60),0 18px 32px -14px rgba(9,9,11,.35),
+    inset 0 1px 0 rgba(255,255,255,.6),inset 0 -22px 42px rgba(255,255,255,.14),inset 0 0 0 1px rgba(255,255,255,.10)}
+.cta-glass-3d h2{text-shadow:0 4px 24px rgba(40,10,110,.35)}
+.cta-glass-3d .btn{box-shadow:0 18px 30px -12px rgba(20,8,60,.55),inset 0 1px 0 rgba(255,255,255,.5)}
+
+/* ---------- 2) Cheaper background scene (no huge blur filters) ---------- */
+.orb{filter:none;opacity:.55;will-change:transform}
+.orb-a{background:radial-gradient(closest-side,color-mix(in srgb,var(--primary) 46%,transparent),transparent)}
+.orb-b{background:radial-gradient(closest-side,rgba(124,77,255,.38),transparent)}
+.orb-c{background:radial-gradient(closest-side,rgba(94,234,212,.38),transparent)}
+
+/* Lighter backdrop blurs (same glass look, far less GPU work) */
+.dash-sidebar{backdrop-filter:blur(10px) saturate(1.25);-webkit-backdrop-filter:blur(10px) saturate(1.25)}
+.cta-glass{backdrop-filter:blur(13px) saturate(1.45);-webkit-backdrop-filter:blur(13px) saturate(1.45)}
+.showcase-glass .showcase-bar{backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+
+/* Long pages render section-by-section instead of all at once */
+.page-main .section,.page-main [data-dept-section]{content-visibility:auto;contain-intrinsic-size:auto 640px}
+
+/* ---------- Lite mode: same design, smooth on weak devices ---------- */
+html.lite .orb{animation:none}
+html.lite .grid-floor{display:none}
+html.lite .dash-sidebar{backdrop-filter:none;-webkit-backdrop-filter:none;background:var(--card)}
+html.lite .mobile-header{backdrop-filter:none;-webkit-backdrop-filter:none;background:var(--background)}
+html.lite .cta-glass,html.lite .showcase-glass .showcase-bar{backdrop-filter:none;-webkit-backdrop-filter:none}
+html.lite .cta-glass{background:linear-gradient(135deg,rgba(124,77,255,.88),rgba(76,29,214,.82) 55%,rgba(120,175,35,.75))}
+html.lite .showcase-glass .showcase-bar{background:rgba(255,255,255,.13)}
+html.lite .tilt3d::after,html.lite .cta-glass::before{display:none}
+html.lite .card,html.lite .person,html.lite .tool,html.lite .stat,html.lite .form-card{
+  box-shadow:0 2px 5px rgba(9,9,11,.06),0 8px 16px -10px rgba(9,9,11,.22)}
+html.lite .card:hover,html.lite .person:hover,html.lite .tool:hover,html.lite .course-card:hover{transform:translateY(-3px)}
+html.lite .live-dot{animation:none}
+html.lite .reveal{transition-duration:.35s}
+
+/* ---------- Reduced motion: calm + fast ---------- */
+@media(prefers-reduced-motion:reduce){
+  .orb{animation:none}
+  .live-dot{animation:none}
+  .reveal{opacity:1;transform:none;transition:none}
+  .card,.person,.tool,.course-card,.btn,.chip{transition:none}
+}
+
+
+/* ============================================================
+   SX-REACT-UPDATE-4
+   1) EVERY Team section (Leadership + all 4 departments) gets
+      the SAME dark glassmorphism background — one uniform look
+      instead of plain / grey / black / violet variants.
+   2) Glassmorphism tuned per theme so the CTA glass panels
+      look right in BOTH light and dark mode.
+   ============================================================ */
+
+/* ---------- 1) Uniform dark glass for all team sections ---------- */
+.page-main [data-dept-section]{
+  width:min(1240px,94%);margin:1.4rem auto;border-radius:28px;color:#ececf1;
+  background:
+    radial-gradient(640px 220px at 12% -4%,rgba(255,255,255,.14),transparent 60%),
+    radial-gradient(560px 260px at 88% 108%,rgba(94,234,212,.12),transparent 62%),
+    linear-gradient(155deg,rgba(22,22,30,.95),rgba(39,33,60,.93) 55%,rgba(19,33,29,.94))!important;
+  border:1px solid rgba(255,255,255,.15);
+  box-shadow:0 36px 66px -28px rgba(8,8,16,.55),inset 0 1px 0 rgba(255,255,255,.16),inset 0 -18px 34px rgba(255,255,255,.05);
+}
+.page-main [data-dept-section] .dept-head h2,
+.page-main [data-dept-section] .section-head h2{color:#fff}
+.page-main [data-dept-section] .dept-head p,
+.page-main [data-dept-section] .section-head p{color:rgba(233,233,240,.68)}
+.page-main [data-dept-section] .dept-ic{background:rgba(255,255,255,.12);color:#fff;
+  border:1px solid rgba(255,255,255,.20);box-shadow:inset 0 1px 0 rgba(255,255,255,.25)}
+.page-main [data-dept-section] .section-head .pill{background:rgba(255,255,255,.10);color:#fff;
+  border-color:rgba(255,255,255,.22);box-shadow:none}
+.page-main [data-dept-section] .members-label{color:rgba(233,233,240,.55)}
+/* member + leader cards keep their own surface on the dark glass */
+.page-main [data-dept-section] .leader-card,
+.page-main [data-dept-section] .person{background:var(--card);border:1px solid var(--border)}
+.page-main [data-dept-section] .leader-card h3,
+.page-main [data-dept-section] .person h3{color:var(--ink)}
+.page-main [data-dept-section] .leader-card p,
+.page-main [data-dept-section] .person p{color:var(--ink-2)}
+[data-theme="dark"] .page-main [data-dept-section]{
+  border-color:rgba(255,255,255,.19);
+  box-shadow:0 36px 66px -26px rgba(0,0,0,.85),0 0 44px -18px rgba(124,77,255,.35),inset 0 1px 0 rgba(255,255,255,.18),inset 0 -18px 34px rgba(255,255,255,.05);
+}
+
+/* ---------- 2) Glass CTA panels: tuned for dark theme too ---------- */
+[data-theme="dark"] .cta-glass{
+  background:linear-gradient(135deg,rgba(147,102,255,.58),rgba(99,42,215,.50) 55%,rgba(174,242,77,.30));
+  border-color:rgba(255,255,255,.30);color:#fff;
+  box-shadow:0 44px 84px -28px rgba(124,77,255,.55),0 0 54px -20px rgba(124,77,255,.45),
+    inset 0 1px 0 rgba(255,255,255,.38),inset 0 -20px 38px rgba(255,255,255,.09);
+}
+[data-theme="dark"] .cta-glass p{color:#eae5ff}
+[data-theme="dark"] .cta-glass-3d{
+  background:linear-gradient(135deg,rgba(147,102,255,.55),rgba(99,42,215,.48) 48%,rgba(45,212,191,.36) 88%,rgba(174,242,77,.30));
+}
+
+
+/* ============================================================
+   SX-REACT-UPDATE-5
+   1) Button hover flicker FIX (Feed + Prompt Library reported,
+      applied everywhere): hover states no longer MOVE the
+      element — a moving button/card slides out from under the
+      cursor, hover drops, it slides back, and the cursor blinks
+      forever. Hovers now change colour/shadow only, and cards
+      that contain buttons/links stay perfectly still.
+   2) Team department backgrounds = BLURRED glassmorphism.
+   3) Left sidebar scrollbar styled to match the design.
+   ============================================================ */
+
+/* ---------- 1) Stable hovers (no transform on hover) ---------- */
+.btn:hover,.btn-shadcn:hover,.chip:hover,.filters .filter-btn:hover,
+.dash-sidebar .side-nav a:hover,.dash-sidebar .side-enroll:hover,
+.main-foot ul li a:hover{transform:none}
+.btn,.filter-btn{cursor:pointer}
+/* cards containing anything clickable must not tilt/lift on hover */
+.card:has(a,button,input,textarea,select):hover,
+.person:has(a,button):hover{transform:none;
+  box-shadow:0 24px 40px -18px rgba(9,9,11,.28),0 6px 14px rgba(9,9,11,.08)}
+/* feed composer + prompt cards: extra-stable, shadow-only feedback */
+.feed-composer:hover,.filterable-prompt:hover{transform:none}
+
+/* ---------- 2) Team departments: blurred glass ---------- */
+.page-main [data-dept-section]{
+  background:
+    radial-gradient(640px 220px at 12% -4%,rgba(255,255,255,.16),transparent 60%),
+    radial-gradient(560px 260px at 88% 108%,rgba(94,234,212,.14),transparent 62%),
+    linear-gradient(155deg,rgba(22,22,30,.84),rgba(39,33,60,.82) 55%,rgba(19,33,29,.84))!important;
+  backdrop-filter:blur(16px) saturate(1.35);-webkit-backdrop-filter:blur(16px) saturate(1.35);
+}
+html.lite .page-main [data-dept-section]{
+  backdrop-filter:none;-webkit-backdrop-filter:none;
+  background:linear-gradient(155deg,rgba(22,22,30,.97),rgba(39,33,60,.97) 55%,rgba(19,33,29,.97))!important;
+}
+
+/* ---------- 3) Sidebar scrollbar, styled ---------- */
+.dash-sidebar{scrollbar-width:thin;scrollbar-color:rgba(140,140,150,.45) transparent}
+.dash-sidebar::-webkit-scrollbar{width:8px}
+.dash-sidebar::-webkit-scrollbar-track{background:transparent}
+.dash-sidebar::-webkit-scrollbar-thumb{
+  background:rgba(140,140,150,.45);border-radius:99px;
+  border:2px solid transparent;background-clip:padding-box}
+.dash-sidebar::-webkit-scrollbar-thumb:hover{background:rgba(182,243,74,.75);
+  border:2px solid transparent;background-clip:padding-box}
+[data-theme="dark"] .dash-sidebar{scrollbar-color:rgba(190,190,200,.35) transparent}
+[data-theme="dark"] .dash-sidebar::-webkit-scrollbar-thumb{background:rgba(190,190,200,.35);
+  border:2px solid transparent;background-clip:padding-box}
+
+/* ============================================================
+   UPDATE-6 (2026-11-01) — Home page 3D module showcase.
+   One tasteful interactive layer on the landing page: four glass
+   module cards on a perspective stage, gentle float (via the
+   `translate` property, so it never fights the JS pointer tilt),
+   side cards angled in 3D on desktop, pointer tilt + glare wired
+   in App.jsx via .sx3d-tilt. Flat + still in lite/reduced-motion.
+   ============================================================ */
+.sx3d-sec{padding-top:.5rem}
+.sx3d-stage{display:grid;grid-template-columns:1fr;gap:1rem;perspective:1400px;margin-top:.4rem}
+.sx3d-card{position:relative;border-radius:22px;padding:1.35rem 1.3rem 1.25rem;overflow:hidden;
+  background:linear-gradient(150deg,rgba(255,255,255,.92),rgba(244,244,246,.82));
+  border:1px solid rgba(255,255,255,.75);
+  box-shadow:0 26px 44px -20px rgba(24,24,28,.35),inset 0 1px 0 rgba(255,255,255,.9);
+  backdrop-filter:blur(10px) saturate(1.3);-webkit-backdrop-filter:blur(10px) saturate(1.3);
+  transform-style:preserve-3d;animation:sx3d-float 7s ease-in-out infinite}
+.sx3d-card:nth-child(2){animation-delay:-1.8s}
+.sx3d-card:nth-child(3){animation-delay:-3.6s}
+.sx3d-card:nth-child(4){animation-delay:-5.2s}
+@keyframes sx3d-float{0%,100%{translate:0 0}50%{translate:0 -8px}}
+[data-theme="dark"] .sx3d-card{background:linear-gradient(150deg,rgba(46,40,64,.88),rgba(24,24,28,.86));
+  border-color:rgba(255,255,255,.16);box-shadow:0 26px 44px -20px rgba(0,0,0,.65),inset 0 1px 0 rgba(255,255,255,.14)}
+.sx3d-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:.9rem}
+.sx3d-top img{width:52px;height:52px;object-fit:contain;border-radius:14px;
+  background:rgba(255,255,255,.85);padding:7px;box-shadow:0 10px 20px -10px rgba(24,24,28,.4)}
+[data-theme="dark"] .sx3d-top img{background:rgba(255,255,255,.92)}
+.sx3d-mod{font-size:.72rem;font-weight:800;letter-spacing:.09em;text-transform:uppercase;
+  color:#1d2b05;background:#b6f34a;border-radius:999px;padding:.32rem .7rem}
+.sx3d-card h3{font-size:1.14rem;letter-spacing:-.015em;margin-bottom:.45rem}
+.sx3d-card p{color:var(--ink-2);font-size:.93rem;line-height:1.55;margin-bottom:.85rem}
+.sx3d-card a{font-weight:700;font-size:.9rem;color:#6d28d9}
+[data-theme="dark"] .sx3d-card a{color:#c4b5fd}
+@media(min-width:900px){
+  .sx3d-stage{grid-template-columns:repeat(4,1fr);gap:1.1rem}
+  .sx3d-card:nth-child(1){transform:rotateY(7deg)}
+  .sx3d-card:nth-child(2){transform:rotateY(2.5deg) translateZ(26px)}
+  .sx3d-card:nth-child(3){transform:rotateY(-2.5deg) translateZ(26px)}
+  .sx3d-card:nth-child(4){transform:rotateY(-7deg)}
+}
+html.lite .sx3d-card{animation:none;backdrop-filter:none;-webkit-backdrop-filter:none}
+@media(prefers-reduced-motion:reduce){.sx3d-card{animation:none}}
+
+/* ============================================================
+   UPDATE-7 (2026-11-01) — Track Your Progress + Login/Sign Up.
+   Progress: sample-labelled preview dashboard (ring, stat cards,
+   module bars, certificate bar with the real 75% marker).
+   Auth: centered card with a CSS-only Sign In / Sign Up toggle
+   (radio inputs, no JS), reusing the site's .field form styles
+   and the shared demo-form success box.
+   ============================================================ */
+.sample-tag{font-size:.68rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;
+  color:#6d28d9;background:rgba(139,92,246,.14);border:1px solid rgba(139,92,246,.35);
+  border-radius:999px;padding:.22rem .6rem;white-space:nowrap}
+[data-theme="dark"] .sample-tag{color:#c4b5fd}
+.prog-note{border:1px solid rgba(182,243,74,.55);background:rgba(182,243,74,.12);
+  border-radius:16px;padding:1rem 1.2rem;line-height:1.6;font-size:.95rem}
+.prog-note a{font-weight:700;color:#6d28d9;white-space:nowrap}
+[data-theme="dark"] .prog-note a{color:#c4b5fd}
+.prog-ring-card{position:relative;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;text-align:center;gap:.4rem;padding:2rem 1.5rem}
+.prog-ring-card .sample-tag{position:absolute;top:1rem;right:1rem}
+.prog-ring{position:relative;width:150px;height:150px}
+.prog-ring-num{position:absolute;inset:0;display:flex;flex-direction:column;
+  align-items:center;justify-content:center}
+.prog-ring-num b{font-size:2rem;letter-spacing:-.02em;line-height:1}
+.prog-ring-num small{color:var(--ink-3);font-size:.78rem;margin-top:.25rem}
+.prog-ring-cap{color:var(--ink-2);font-size:.92rem;max-width:300px}
+.prog-stats{display:grid;grid-template-columns:1fr;gap:1rem}
+.prog-stat{position:relative;padding:1.3rem 1.4rem}
+.prog-stat .sample-tag{position:absolute;top:1rem;right:1rem}
+.prog-stat b{font-size:1.7rem;letter-spacing:-.02em;display:block}
+.prog-stat p{color:var(--ink-2);font-size:.92rem;margin-top:.15rem}
+.prog-row-head{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-bottom:1.1rem}
+.prog-row{padding:.85rem 0;border-top:1px solid var(--border)}
+.prog-row:first-of-type{border-top:none}
+.prog-row-top{display:flex;align-items:center;justify-content:space-between;gap:1rem;
+  font-weight:600;font-size:.95rem;margin-bottom:.55rem;flex-wrap:wrap}
+.prog-chip{font-size:.74rem;font-weight:800;border-radius:999px;padding:.28rem .65rem;white-space:nowrap}
+.prog-chip.done{background:rgba(182,243,74,.25);color:#3f6212}
+.prog-chip.doing{background:rgba(139,92,246,.15);color:#6d28d9}
+.prog-chip.next{background:var(--bg-soft);color:var(--ink-3);border:1px solid var(--border)}
+[data-theme="dark"] .prog-chip.done{color:#b6f34a}
+[data-theme="dark"] .prog-chip.doing{color:#c4b5fd}
+.prog-bar{position:relative;height:10px;border-radius:99px;background:var(--bg-soft);
+  border:1px solid var(--border);overflow:visible}
+.prog-bar i{display:block;height:100%;border-radius:99px;
+  background:linear-gradient(90deg,#b6f34a,#5eead4)}
+.prog-bar.cert{margin-top:.4rem}
+.prog-marker{position:absolute;top:-5px;width:2px;height:18px;background:#8b5cf6;font-style:normal}
+.prog-marker small{position:absolute;top:-1.35rem;left:50%;transform:translateX(-50%);
+  font-size:.72rem;font-weight:700;color:#8b5cf6;white-space:nowrap}
+/* --- Auth (login / sign up) --- */
+.auth-wrap{max-width:520px;margin:0 auto}
+.auth-card{position:relative;background:var(--card);border:1px solid var(--border);border-radius:24px;
+  padding:1.6rem;box-shadow:0 30px 55px -25px rgba(9,9,11,.35)}
+.auth-radio{position:absolute;opacity:0;pointer-events:none}
+.auth-tabs{display:flex;gap:.3rem;background:var(--muted,var(--bg-soft));border:1px solid var(--border);
+  border-radius:14px;padding:.32rem;margin-bottom:1.4rem}
+.auth-tabs label{flex:1;text-align:center;padding:.6rem 1rem;border-radius:10px;cursor:pointer;
+  font-weight:700;font-size:.95rem;color:var(--muted-foreground,var(--ink-2));transition:background .18s ease,color .18s ease}
+#tab-in:checked ~ .auth-tabs label[for="tab-in"],
+#tab-up:checked ~ .auth-tabs label[for="tab-up"]{background:var(--card);color:var(--foreground);
+  box-shadow:0 8px 18px -8px rgba(9,9,11,.35),0 1px 3px rgba(9,9,11,.12)}
+.auth-panel{display:none}
+#tab-in:checked ~ .auth-panels .panel-in{display:block}
+#tab-up:checked ~ .auth-panels .panel-up{display:block}
+.auth-card .field{margin-bottom:1rem}
+.auth-alt{margin-top:1.1rem;font-size:.9rem;color:var(--ink-2);text-align:center}
+.auth-alt a,.auth-link{color:#6d28d9;font-weight:700}
+[data-theme="dark"] .auth-alt a,[data-theme="dark"] .auth-link{color:#c4b5fd}
+.auth-link{cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.auth-note{margin-top:1.1rem;text-align:center;color:var(--ink-2);font-size:.9rem;line-height:1.6}
+.auth-note a{color:#6d28d9;font-weight:700}
+[data-theme="dark"] .auth-note a{color:#c4b5fd}
+
+/* ============================================================
+   UPDATE-8 (2026-11-01) — Progress page rebuilt from the
+   ORIGINAL portal's data (dashboard stat cards, the 4-step
+   class-completion chain, the 3 seeded assignments, week meta)
+   + student action forms: rate/feedback and post-assignment,
+   both frontend demos on the site's demo-form pattern.
+   ============================================================ */
+.prog-stats4{display:grid;grid-template-columns:1fr;gap:1rem}
+@media(min-width:760px){.prog-stats4{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1080px){.prog-stats4{grid-template-columns:repeat(4,1fr)}}
+.prog-stat small{display:block;font-size:.78rem;font-weight:800;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--ink-3);margin-bottom:.35rem}
+.prog-stat .prog-bar{margin-top:.8rem}
+.prog-steps{display:grid;grid-template-columns:1fr;gap:.9rem;margin:1.2rem 0 .4rem}
+@media(min-width:760px){.prog-steps{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1080px){.prog-steps{grid-template-columns:repeat(4,1fr)}}
+.prog-step{display:flex;gap:.8rem;align-items:flex-start;background:var(--bg-soft);
+  border:1px solid var(--border);border-radius:16px;padding:1rem}
+.prog-step b{flex:none;width:30px;height:30px;border-radius:50%;background:#b6f34a;color:#1d2b05;
+  display:flex;align-items:center;justify-content:center;font-size:.95rem}
+.prog-step strong{display:block;margin-bottom:.2rem}
+.prog-step p{color:var(--ink-2);font-size:.88rem;line-height:1.5}
+.prog-form{margin-top:1.6rem;border-top:1px solid var(--border);padding-top:1.4rem}
+.prog-submit{margin-top:1rem}
+.assign-card h3{margin:.7rem 0 .5rem;font-size:1.05rem}
+.assign-card p{color:var(--ink-2);font-size:.92rem;line-height:1.55;margin-bottom:1rem}
+/* CSS star rating (row-reverse trick, no JS) */
+.stars{display:inline-flex;flex-direction:row-reverse;gap:.15rem;padding:.45rem 0}
+.stars input{position:absolute;opacity:0;pointer-events:none}
+.stars label{font-size:1.7rem;line-height:1;color:var(--border);cursor:pointer;transition:color .15s ease}
+.stars label:hover,.stars label:hover ~ label,.stars input:checked ~ label{color:#f5b301}
+
+/* ============================================================
+   UPDATE-9 (2026-11-02) — Team page org-chart redesign + home polish
+   1) Toolbar (search, filters, count, empty state)
+   2) Org tiers + connectors (Founders / Director / Joint Heads
+      wrappers carry data-dept-section for the filter JS but
+      must NOT look like the dark-glass department panels)
+   3) Department panels (keep the UPDATE-4/5 dark glass)
+   4) Home polish (home-page-only selectors)
+   5) Mobile
+   Notes: no transform on :hover (site-wide since v5), no
+   animations/transitions on connectors (static in lite /
+   reduced-motion automatically), tier text uses theme vars
+   for light/dark correctness while dept panels stay
+   always-dark glass with white/rgba-white inner headings.
+   ============================================================ */
+
+/* ---------- 1) Toolbar ---------- */
+.org-toolbar{width:min(1120px,92%);margin:0 auto;padding:1rem 0 .4rem}
+.org-toolbar .org-search{max-width:430px;margin:0 auto}
+.org-toolbar .filters.team{margin-bottom:1rem}
+.org-toolbar .team-count{text-align:center;color:var(--ink-3);font-size:.88rem}
+.org-toolbar .team-empty{text-align:center;color:var(--ink-2)}
+
+/* ---------- 2) Org tiers + connectors ---------- */
+.page-main .org-tier[data-dept-section]{
+  background:none!important;border:none;box-shadow:none;
+  backdrop-filter:none;-webkit-backdrop-filter:none;
+  color:var(--ink);border-radius:0;
+  width:min(1120px,92%);margin:0 auto;
+  padding:1.4rem 0 .4rem;
+}
+.org-tier-title{text-align:center;font-family:var(--font-display);
+  font-size:clamp(1.35rem,2.6vw,1.7rem);letter-spacing:-.02em;
+  color:var(--ink);margin:0 0 1.3rem}
+.org-connector{display:block;width:2px;height:46px;margin:0 auto 1.1rem;
+  border-radius:2px;
+  background:linear-gradient(180deg,rgba(182,243,74,0),#b6f34a,rgba(182,243,74,0))}
+.org-connector-sm{height:28px;margin:.4rem auto .2rem}
+.org-cards{display:flex;flex-wrap:wrap;justify-content:center;gap:1.1rem}
+.org-cards .leader-card{flex:0 1 430px;width:100%;max-width:430px}
+.org-founders{width:100%}
+
+/* ---------- 3) Department panels ---------- */
+.page-main .org-dept[data-dept-section]{padding:3.2rem clamp(1.2rem,4vw,3rem) 3.4rem}
+.org-dept-head{text-align:center;margin-bottom:1.8rem}
+.org-dept-head h2{color:#fff;font-family:var(--font-display);
+  font-size:clamp(1.7rem,3.4vw,2.4rem);letter-spacing:-.03em}
+.org-dept-head p{color:rgba(233,233,240,.72);margin-top:.45rem}
+.org-label{font-size:.72rem;font-weight:800;letter-spacing:.09em;
+  text-transform:uppercase;color:rgba(233,233,240,.55);
+  text-align:center;margin:0 0 1rem}
+.org-leaders{display:flex;flex-wrap:wrap;justify-content:center;gap:1.1rem}
+.org-leaders .leader-card{flex:1 1 290px;max-width:355px}
+
+/* ---------- 4) Home polish ---------- */
+.showcase-glass .showcase-bar{align-items:center}
+.showcase-glass .countdown>div{text-align:center}
+.showcase-platforms{text-align:right}
+.sx3d-sec{padding-bottom:3.4rem}
+.hero .sub{line-height:1.65}
+.fan .fan-card h3{letter-spacing:-.02em}
+@media(max-width:700px){.showcase-platforms{text-align:left}}
+
+/* ---------- 5) Mobile ---------- */
+@media(max-width:640px){
+  .org-cards .leader-card,.org-leaders .leader-card{max-width:100%}
+  .page-main .org-dept[data-dept-section]{padding:2.2rem 1.1rem 2.4rem}
+  .org-tier-title{margin-bottom:1rem}
+}
+
+/* ============================================================
+   UPDATE-10 (2026-11-02) — Footer spotlight wordmark + mentor
+   ratings & reviews modal (user-directed).
+   1) Footer: a giant "SkillX" wordmark closes the footer
+      (markup in src/data/footer.html.txt). Base layer = faint
+      outline letters in both themes. A lime-gradient layer on
+      top is revealed only through a radial mask centred on
+      the pointer — src/features/footerSpotlight.js writes the
+      pointer position into --mx/--my on the container. Touch /
+      lite / reduced-motion: glow layer hidden, base remains.
+   2) Mentors: src/features/mentorReviews.js makes every
+      mentor card open one shared ratings modal (star summary
+      + Fiverr-style written review cards; SAMPLE data clearly
+      tagged until the ratings backend connects).
+   ============================================================ */
+
+/* ---------- 1) Footer giant wordmark + spotlight ---------- */
+.foot-wordmark{
+  --mx:-9999px; --my:-9999px;
+  position:relative; overflow:hidden; text-align:center;
+  margin-top:2.6rem; margin-bottom:-2.5rem; /* sits on the footer's bottom edge */
+  line-height:.78; user-select:none; pointer-events:auto;
+}
+.foot-wordmark span{
+  display:block; font-family:var(--font-display); font-weight:800;
+  font-size:clamp(5rem,20.5vw,21rem); letter-spacing:-.035em;
+  white-space:nowrap; transform:translateY(11%);
+}
+.foot-wordmark-base{
+  color:transparent;
+  -webkit-text-stroke:2px var(--ink-3);
+  opacity:.5;
+}
+.foot-wordmark-glow{
+  position:absolute; inset:0;
+  background:linear-gradient(180deg,#dcff9b 0%,var(--lime) 55%,#7cb518 100%);
+  -webkit-background-clip:text; background-clip:text;
+  color:transparent; -webkit-text-stroke:2px transparent;
+  -webkit-mask-image:radial-gradient(520px circle at var(--mx) var(--my),#000 0%,transparent 70%);
+          mask-image:radial-gradient(520px circle at var(--mx) var(--my),#000 0%,transparent 70%);
+}
+/* No hover (touch), lite mode, reduced motion → base wordmark only.
+   (Selector outranks the .foot-wordmark span display rule above.) */
+@media (hover:none), (pointer:coarse){ .foot-wordmark .foot-wordmark-glow{display:none} }
+.lite .foot-wordmark .foot-wordmark-glow{display:none}
+@media (prefers-reduced-motion: reduce){ .foot-wordmark .foot-wordmark-glow{display:none} }
+
+/* ---------- 2) Mentor cards: clickable affordance ---------- */
+.mr-card{cursor:pointer;transition:border-color .25s,box-shadow .25s,background-color .25s}
+.mr-card:hover,.mr-card:focus-visible{
+  box-shadow:0 0 0 1.5px rgba(182,243,74,.55), var(--shadow-sm);
+  outline:none;
+}
+.mr-hint{
+  display:inline-block; margin-top:.6rem; font-size:.78rem; font-weight:700;
+  letter-spacing:.02em; color:#4d7c0f;
+}
+[data-theme="dark"] .mr-hint{color:var(--lime)}
+
+/* ---------- 3) Mentor reviews modal ---------- */
+.mr-backdrop{
+  position:fixed; inset:0; z-index:200; display:none;
+  align-items:center; justify-content:center; padding:1.2rem;
+  background:rgba(4,6,4,.62); backdrop-filter:blur(6px);
+}
+.mr-backdrop.open{display:flex}
+.mr-modal{
+  position:relative; width:100%; max-width:560px; max-height:86vh;
+  overflow-y:auto; background:var(--bg); color:var(--ink);
+  border:1px solid var(--line); border-radius:20px;
+  box-shadow:var(--shadow); padding:1.6rem;
+}
+.mr-close{
+  position:absolute; top:.9rem; right:.9rem; width:36px; height:36px;
+  border-radius:12px; border:1px solid var(--line); background:var(--card);
+  color:var(--ink); font-size:.95rem; cursor:pointer; line-height:1;
+}
+.mr-close:hover{border-color:rgba(182,243,74,.6); color:#4d7c0f}
+[data-theme="dark"] .mr-close:hover{color:var(--lime)}
+.mr-head{display:flex; align-items:center; gap:1rem; padding-right:2.4rem}
+.mr-photo{width:64px; height:64px; border-radius:50%; object-fit:cover;
+  border:2px solid rgba(182,243,74,.55); flex:none}
+.mr-name{font-family:var(--font-display); font-size:1.35rem; letter-spacing:-.02em; line-height:1.2}
+.mr-role{color:var(--ink-2); font-size:.9rem; margin-top:.15rem}
+.mr-body{margin-top:1.2rem}
+.mr-summary{
+  display:flex; gap:1.4rem; align-items:center;
+  background:var(--card); border:1px solid var(--line);
+  border-radius:16px; padding:1.1rem 1.2rem;
+}
+.mr-summary-empty{justify-content:center; text-align:center}
+.mr-avg{display:flex; flex-direction:column; align-items:flex-start; gap:.15rem; flex:none}
+.mr-summary-empty .mr-avg{align-items:center}
+.mr-avg-num{font-family:var(--font-display); font-size:2.3rem; line-height:1; letter-spacing:-.03em}
+.mr-avg-total{color:var(--ink-2); font-size:.85rem}
+.mr-stars{font-size:1rem; line-height:1.2; letter-spacing:.06em}
+.mr-stars-on{color:#84cc16}
+[data-theme="dark"] .mr-stars-on{color:var(--lime)}
+.mr-stars-off{color:var(--ink-3); opacity:.45}
+.mr-bars{flex:1; display:grid; gap:.32rem; min-width:0}
+.mr-bar-row{display:flex; align-items:center; gap:.55rem; font-size:.8rem; color:var(--ink-2)}
+.mr-bar-star{flex:none; width:1.9rem; font-weight:700; color:var(--ink)}
+.mr-bar-track{flex:1; height:8px; border-radius:99px; background:var(--card-2); overflow:hidden}
+.mr-bar-fill{display:block; height:100%; border-radius:99px;
+  background:linear-gradient(90deg,#84cc16,var(--lime))}
+.mr-bar-count{flex:none; width:2.2rem; text-align:right; font-variant-numeric:tabular-nums}
+.mr-sample-note{
+  display:flex; align-items:flex-start; gap:.55rem; margin-top:1rem;
+  font-size:.88rem; line-height:1.55; color:var(--ink-2);
+}
+.mr-sample-note .sample-tag{flex:none; margin-top:.1rem}
+.mr-reviews-title{font-family:var(--font-display); font-size:1.05rem;
+  letter-spacing:-.01em; margin:1.3rem 0 .7rem}
+.mr-list{display:grid; gap:.8rem}
+.mr-review{
+  border:1px solid var(--line); border-radius:16px;
+  padding:1rem 1.1rem; background:var(--bg-soft);
+}
+.mr-review-head{display:flex; align-items:center; gap:.7rem}
+.mr-avatar{width:42px; height:42px; border-radius:50%; object-fit:cover; flex:none}
+.mr-avatar-initials{
+  display:inline-flex; align-items:center; justify-content:center;
+  background:linear-gradient(135deg,#365314,#84cc16); color:#f7fee7;
+  font-weight:800; font-size:.85rem; letter-spacing:.03em;
+}
+.mr-review-who{display:flex; flex-direction:column; gap:.1rem; min-width:0}
+.mr-review-name{font-size:.95rem; line-height:1.3}
+.mr-review-who .mr-stars{font-size:.82rem}
+.mr-review-text{margin-top:.6rem; font-size:.93rem; line-height:1.65; color:var(--ink-2)}
+.mr-review-class{margin-top:.5rem; font-size:.78rem; font-weight:600;
+  letter-spacing:.02em; color:var(--ink-3)}
+.mr-empty{color:var(--ink-2); font-size:.95rem; line-height:1.6; padding:.4rem 0}
+
+/* Mobile: bottom-sheet modal */
+@media(max-width:640px){
+  .mr-backdrop{align-items:flex-end; padding:0}
+  .mr-modal{max-width:100%; max-height:88vh; border-radius:20px 20px 0 0;
+    border-bottom:none; padding:1.3rem 1.1rem 1.6rem}
+  .mr-summary{flex-direction:column; align-items:stretch; gap:1rem}
+  .mr-avg{align-items:center}
+}
+
+
+
+/* ============================================================
+   UPDATE-11 (2026-11-02) — Footer wordmark rebuilt to the
+   user's exact brand-header spec (supersedes the UPDATE-10
+   wordmark rules above; UPDATE-10's mentor-modal rules are
+   untouched).
+   1) Placement: the wordmark is now the FIRST block inside
+      the footer — directly above the navigation grid, social
+      and fine rows (markup moved in src/data/footer.html.txt).
+      The old bottom-edge crop (negative margin + translateY)
+      is neutralised below, so the footer ends with the normal
+      .fine row again and the full wordmark renders cleanly.
+   2) Base state (exact spec): fully transparent fill with a
+      crisp outline — dark theme:
+      -webkit-text-stroke: 2px rgba(255,255,255,.8).
+      LIGHT-THEME ADAPTATION: a white stroke is invisible on a
+      light background, so the light theme uses the same 2px
+      stroke in dark ink (rgba(12,12,13,.78)). Fill stays
+      transparent in both themes.
+   3) Spotlight: the lime-gradient layer is clipped strictly
+      inside the letters (background-clip:text) and masked by a
+      soft radial gradient centred on --mouse-x / --mouse-y,
+      which src/features/footerSpotlight.js eases toward the
+      pointer every rAF (damped trail, no snapping).
+   4) Enter/exit: --spot-r (radius) and --spot-o (opacity) are
+      @property-registered so CSS can transition them — on
+      .is-hover (mouseenter) the light expands 0 → 520px and
+      fades in over ~.55s; on mouseleave it fades back out to
+      the clean outlined state. (Browsers without @property
+      still work — the values simply switch without the tween.)
+   ============================================================ */
+@property --spot-r { syntax:'<length>'; inherits:true; initial-value:0px }
+@property --spot-o { syntax:'<number>'; inherits:true; initial-value:0 }
+
+.foot-wordmark{
+  --mouse-x:50%; --mouse-y:50%;
+  --spot-r:0px; --spot-o:0;
+  margin:2.4rem 0 1.2rem; /* top-of-footer block; old bottom crop removed */
+  line-height:.86;
+  transition:--spot-r .55s ease, --spot-o .5s ease;
+}
+.foot-wordmark.is-hover{ --spot-r:520px; --spot-o:1 }
+.foot-wordmark span{ transform:none } /* full letters — no crop shift */
+.foot-wordmark-base{
+  color:transparent; opacity:1;
+  -webkit-text-stroke:2px rgba(12,12,13,.78); /* light theme: dark ink */
+}
+[data-theme="dark"] .foot-wordmark-base{
+  -webkit-text-stroke:2px rgba(255,255,255,.8); /* exact spec (dark) */
+}
+.foot-wordmark .foot-wordmark-glow{
+  opacity:var(--spot-o);
+  -webkit-mask-image:radial-gradient(var(--spot-r) circle at var(--mouse-x) var(--mouse-y),#000 0%,transparent 70%);
+          mask-image:radial-gradient(var(--spot-r) circle at var(--mouse-x) var(--mouse-y),#000 0%,transparent 70%);
+}
+
+/* ============================================================
+   UPDATE-12 (2026-11-02) — Footer wordmark: MORE DELAY.
+   User asked for more delay in the spotlight transition.
+   Two parts: (1) the JS trail ease was halved in
+   footerSpotlight.js (TRAIL_EASE 0.16 → 0.08, lazier trail);
+   (2) here — the enter/exit fade+expand of --spot-r/--spot-o
+   slows from .55s/.5s (UPDATE-11) to .9s.
+   ============================================================ */
+.foot-wordmark{
+  transition:--spot-r .9s ease, --spot-o .9s ease;
+}
+
+/* ============================================================
+   UPDATE-13 (2026-11-02) — Section transitions on every page.
+   Styles for src/features/pageTransitions.js (v17). The hidden
+   starting state applies ONLY under the module's own `sx-anim`
+   gate class on <html>, so a JS failure can never hide content.
+   Lite mode and reduced-motion neutralise it completely.
+   Transform + opacity only — no layout animation.
+   ============================================================ */
+.sx-anim .sx-reveal{
+  opacity:0;
+  transform:translateY(24px);
+  transition:opacity .65s ease, transform .65s cubic-bezier(.2,.7,.3,1);
+}
+.sx-anim .sx-reveal.in{ opacity:1; transform:none }
+html.lite .sx-reveal{ opacity:1; transform:none; transition:none }
+@media (prefers-reduced-motion: reduce){
+  .sx-anim .sx-reveal{ opacity:1; transform:none; transition:none }
+}

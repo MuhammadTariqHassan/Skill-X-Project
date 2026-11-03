@@ -1,0 +1,126 @@
+/* ================================================================
+   SkillX floating features — ISOLATED styles.
+   Everything is namespaced (.sxf-*) and only styles the new
+   floating buttons, the assistant panel and the #bg-3d canvas.
+   No existing selector from the site is touched.
+   Mobile-first: base styles are for small screens, min-width
+   queries scale up for desktop.
+   ================================================================ */
+
+/* --- 3D particle background canvas (driven by /effects/bg-3d.js) --- */
+#bg-3d{position:fixed;inset:0;z-index:-1;pointer-events:none}
+
+/* --- Floating button stack (bottom-right, above Back-to-top) --- */
+.sxf-stack{position:fixed;right:14px;bottom:calc(82px + env(safe-area-inset-bottom,0px));
+  z-index:120;display:flex;flex-direction:column;gap:12px;align-items:flex-end}
+.sxf-fab{display:inline-flex;align-items:center;gap:.5rem;height:54px;min-width:54px;
+  padding:0 15px 0 16px;border-radius:999px;border:1px solid rgba(255,255,255,.35);
+  cursor:pointer;text-decoration:none;font-family:inherit;
+  box-shadow:0 18px 34px -12px rgba(9,9,11,.5),inset 0 1px 0 rgba(255,255,255,.4);
+  transition:box-shadow .2s ease,background .2s ease}
+.sxf-fab svg{width:26px;height:26px;flex:none}
+.sxf-fab-label{font-size:.9rem;font-weight:700;white-space:nowrap}
+.sxf-fab-ai{background:linear-gradient(135deg,#8b5cf6,#6d28d9 60%,#7c3aed);color:#fff}
+.sxf-fab-ai:hover{box-shadow:0 22px 40px -12px rgba(109,40,217,.65),inset 0 1px 0 rgba(255,255,255,.4)}
+.sxf-fab-wa{background:#25d366;color:#fff;position:relative}
+.sxf-fab-wa:hover{box-shadow:0 22px 40px -12px rgba(18,140,70,.7),inset 0 1px 0 rgba(255,255,255,.4)}
+.sxf-fab-wa::after{content:"";position:absolute;inset:-4px;border-radius:999px;
+  border:2px solid rgba(37,211,102,.55);animation:sxf-pulse 2.2s ease-out infinite;pointer-events:none}
+@keyframes sxf-pulse{0%{transform:scale(.92);opacity:.9}70%{transform:scale(1.12);opacity:0}100%{opacity:0}}
+
+/* On small phones the labels collapse — round icon buttons */
+@media(max-width:480px){
+  .sxf-fab{padding:0;width:54px;justify-content:center}
+  .sxf-fab-label{display:none}
+}
+
+/* --- Assistant panel: full-width bottom sheet on mobile --- */
+.sxf-panel{position:fixed;left:10px;right:10px;
+  bottom:calc(148px + env(safe-area-inset-bottom,0px));z-index:130;
+  display:flex;flex-direction:column;max-height:min(600px,72dvh);
+  background:var(--card,#fff);color:var(--foreground,#09090b);
+  border:1px solid var(--border,#e4e4e7);border-radius:22px;overflow:hidden;
+  box-shadow:0 34px 70px -22px rgba(9,9,11,.5)}
+.sxf-panel-head{display:flex;align-items:center;justify-content:space-between;gap:1rem;
+  padding:.9rem 1.1rem;color:#fff;
+  background:linear-gradient(120deg,rgba(24,24,28,.97),rgba(46,33,64,.97));
+  border-bottom:1px solid rgba(255,255,255,.12)}
+.sxf-panel-head strong{display:block;font-size:1.02rem;letter-spacing:-.01em}
+.sxf-panel-head small{display:block;color:rgba(255,255,255,.65);font-size:.76rem;margin-top:.1rem}
+.sxf-close{width:36px;height:36px;flex:none;border-radius:10px;border:1px solid rgba(255,255,255,.25);
+  background:rgba(255,255,255,.08);color:#fff;cursor:pointer;font-size:.95rem}
+.sxf-panel-body{padding:1rem;overflow-y:auto;flex:1 1 auto;min-height:0;
+  display:flex;flex-direction:column;gap:.6rem;background:var(--bg-soft,#f4f4f5);
+  scrollbar-width:thin;scrollbar-color:rgba(140,140,150,.45) transparent}
+.sxf-panel-body::-webkit-scrollbar{width:8px}
+.sxf-panel-body::-webkit-scrollbar-track{background:transparent}
+.sxf-panel-body::-webkit-scrollbar-thumb{background:rgba(140,140,150,.45);border-radius:99px;
+  border:2px solid transparent;background-clip:padding-box}
+.sxf-panel-body::-webkit-scrollbar-thumb:hover{background:rgba(182,243,74,.75);
+  border:2px solid transparent;background-clip:padding-box}
+[data-theme="dark"] .sxf-panel-body{scrollbar-color:rgba(190,190,200,.35) transparent}
+[data-theme="dark"] .sxf-panel-body::-webkit-scrollbar-thumb{background:rgba(190,190,200,.35);
+  border:2px solid transparent;background-clip:padding-box}
+.sxf-msg{max-width:88%;padding:.65rem .85rem;border-radius:16px;font-size:.92rem;line-height:1.5}
+.sxf-msg p{margin:0}
+.sxf-msg-bot{align-self:flex-start;background:var(--card,#fff);color:var(--foreground,#09090b);
+  border:1px solid var(--border,#e4e4e7);border-bottom-left-radius:6px}
+.sxf-msg-user{align-self:flex-end;background:#18181b;color:#fff;border-bottom-right-radius:6px}
+[data-theme="dark"] .sxf-msg-user{background:#b6f34a;color:#1d2b05}
+.sxf-msg-link{display:inline-block;margin-top:.45rem;font-weight:700;font-size:.86rem;
+  color:#6d28d9;text-decoration:underline;text-underline-offset:3px}
+[data-theme="dark"] .sxf-msg-link{color:#c4b5fd}
+/* Quick questions live INSIDE the single scroll flow (no own scrollbar) */
+.sxf-quick{margin:.15rem 0 .35rem}
+.sxf-quick-label{margin:0 0 .5rem;font-size:.74rem;font-weight:800;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--ink-3,#71717a)}
+.sxf-quick-chips{display:flex;gap:.45rem;flex-wrap:wrap}
+.sxf-chip{border:1px solid var(--border,#e4e4e7);background:var(--card,#fff);
+  color:var(--foreground,#09090b);border-radius:999px;padding:.42rem .75rem;
+  font-size:.8rem;font-weight:600;cursor:pointer;font-family:inherit}
+.sxf-chip:hover{border-color:#8b5cf6;color:#6d28d9}
+[data-theme="dark"] .sxf-chip:hover{color:#c4b5fd;border-color:#8b5cf6}
+.sxf-input-row{display:flex;gap:.5rem;padding:.7rem 1rem calc(.7rem + env(safe-area-inset-bottom,0px));
+  border-top:1px solid var(--border,#e4e4e7)}
+.sxf-input-row input{flex:1;min-width:0;height:44px;border-radius:12px;
+  border:1px solid var(--border,#e4e4e7);background:var(--card,#fff);
+  color:var(--foreground,#09090b);padding:0 .85rem;font-size:.95rem;font-family:inherit}
+.sxf-input-row input:focus{outline:none;border-color:#b6f34a;
+  box-shadow:0 0 0 3px rgba(182,243,74,.4)}
+.sxf-input-row button{width:46px;height:44px;flex:none;border:none;border-radius:12px;
+  background:#b6f34a;color:#1d2b05;font-size:1rem;cursor:pointer}
+
+/* --- Desktop: panel becomes a card above the buttons --- */
+@media(min-width:640px){
+  .sxf-stack{right:20px}
+  .sxf-panel{left:auto;right:20px;width:392px;bottom:calc(156px + env(safe-area-inset-bottom,0px))}
+}
+
+/* --- Lite / reduced-motion: calm, no pulse --- */
+html.lite .sxf-fab-wa::after{animation:none;display:none}
+@media(prefers-reduced-motion:reduce){
+  .sxf-fab-wa::after{animation:none;display:none}
+}
+
+
+/* ================================================================
+   ADDITIVE BLOCK — mobile sizing for the floating buttons.
+   Identified selectors in this codebase:
+     WhatsApp floating icon : .sxf-fab.sxf-fab-wa  (the <a> in .sxf-stack)
+     AI logo / widget button: .sxf-fab.sxf-fab-ai  (the <button> in .sxf-stack)
+   Desktop styling is NOT changed. At max-width 768px both buttons
+   shrink to compact 46px round icons with tighter edge spacing,
+   and the assistant panel rises to match the smaller stack.
+   ================================================================ */
+@media (max-width: 768px) {
+  .sxf-stack { right: 10px; gap: 10px; bottom: calc(74px + env(safe-area-inset-bottom, 0px)); }
+  .sxf-fab.sxf-fab-wa,
+  .sxf-fab.sxf-fab-ai {
+    width: 46px; height: 46px; min-width: 46px; padding: 0;
+    justify-content: center; transform: scale(0.92);
+  }
+  .sxf-fab.sxf-fab-wa svg,
+  .sxf-fab.sxf-fab-ai svg { width: 22px; height: 22px; }
+  .sxf-fab .sxf-fab-label { display: none; }
+  .sxf-panel { bottom: calc(132px + env(safe-area-inset-bottom, 0px)); }
+}

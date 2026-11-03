@@ -1,0 +1,15 @@
+
+  <div class="foot-wordmark" aria-hidden="true"><span class="foot-wordmark-base">SkillX</span><span class="foot-wordmark-glow">SkillX</span></div>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <a class="brand" href="#/index"><img src="assets/logo.webp" alt="SkillX logo"></a>
+        <p style="color:var(--ink-2);margin-top:.8rem;font-size:.94rem">SkillX is a digital institute of technology for advanced AI and digital skills. Founded by Najeeb Ullah &amp; Mian Haroon. Based in Shahpur Chakar, Sindh, Pakistan.</p>
+        <p style="color:var(--ink-2);font-size:.94rem;margin-top:.6rem">najeebullah@skillxpk.com · skillxpk.com</p>
+      </div>
+      <div><h4>Course</h4><ul><li><a href="#/courses">All Courses</a></li><li><a href="#/course-ai-pro">AI Pro Course Details</a></li><li><a href="#/schedule">Schedule</a></li><li><a href="#/enroll">Enroll Free</a></li></ul></div>
+      <div><h4>Institute</h4><ul><li><a href="#/about">About SkillX</a></li><li><a href="#/mentors">Mentors</a></li><li><a href="#/team">Meet the Team</a></li></ul></div>
+      <div><h4>Students</h4><ul><li><a href="#/feed">Students Feed</a></li><li><a href="#/prompts">Prompt Library</a></li><li><a href="#/giveaway">Giveaway</a></li><li><a href="#/support">Support</a></li></ul></div>
+    </div>
+    <div class="fine"><span>© 2026 SkillX · Digital Institute of Technology</span><span>React frontend — HTML / CSS / JS · shadcn-style 3D UI</span></div>
+  </div>
